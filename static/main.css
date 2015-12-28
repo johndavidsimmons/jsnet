@@ -1,0 +1,58 @@
+/****************************
+		Navigation
+****************************/
+.navbar-default {
+	background-color: #fff;
+	border: 1px solid transparent;
+	
+}
+
+.navbar-default .navbar-nav>li>a {
+	color: #000;
+	font-weight: bold;
+	border-bottom: 2px solid transparent;
+}
+.selected {
+	border-bottom: 2px solid black;
+}
+
+/****************************
+		Positioning
+****************************/
+.push-lg {
+	margin-bottom: 2em;
+}
+
+.push-sm {
+	margin-bottom: 1em;
+}
+
+footer {
+	padding-top: 4em;
+}
+
+/****************************
+		Home
+****************************/
+.par {
+	font-size: 1.1em;
+	line-height: 1.65em;
+}
+
+.lastfm {
+	font-size: .8em;
+	background-color: #f8f8f8;
+	padding: 2em;
+}
+
+/****************************
+		Resume
+****************************/
+.res-head {
+	font-size: 1.5em;
+	color: #bbb;
+}
+
+
+
+/*Hide bio image on mobile*/

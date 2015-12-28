@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+	<div class="col-sm-2"></div>
+	<div class="col-sm-4">
+		<img src="{{ CONTENT_DICT['Images']['portrait'] }}" alt="John Simmons portrait" class="img-rounded center-block">
+	</div>
+	<div class="col-sm-4">
+		<p class="par push-lg">{{ CONTENT_DICT['Home']['bio']|safe }}</p>
+		<div class="row push-lg center-block">
+				{% for key, values in CONTENT_DICT['Social'].items() %}
+				<div class="col-xs-3">
+				<a href="{{ values.link }}"><i class="{{ values.fa }}"></i></a>
+				</div>
+				{% endfor %}
+		</div>
+		<p class="lastfm text-center">
+			<b>Last listen:</b><em>&nbsp;&nbsp;{{ artist }} - {{ track }}</em>
+		</p>
+	</div>
+	<div class="col-sm-2"></div>
+</div>
+
+{% endblock %}

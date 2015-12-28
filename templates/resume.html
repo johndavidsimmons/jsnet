@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="row">
+	<div class="col-sm-12">
+		<p class='text-center res-head push-sm'><em>&mdash;Work&mdash;</em></p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-3"></div>
+	<div class="col-sm-6">
+		{% for list in CONTENT_DICT['Resume'] %}
+			<strong><a href="{{ list[1] }}">{{ list[0] }}</a></strong> &mdash; <em>{{ list[3] }}</em>
+			<small><p>{{ list[2] }}</p></small>
+			<p class='push-sm'>{{ list[4] }}</p>
+		{% endfor %}
+	</div>
+	<div class="col-sm-3"></div>
+</div>
+<div class="row">
+	<div class="col-sm-12">
+		<p class='text-center res-head push-sm'><em>&mdash;School&mdash;</em></p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-3"></div>
+	<div class="col-sm-6">
+		{% for list in CONTENT_DICT['Education'] %}
+			<strong><a href="{{ list[1] }}">{{ list[0] }}</a></strong> &mdash; <em>{{ list[2] }}</em>
+			<small><p>{{ list[3] }}</p></small>
+			<p>{{ list[4] }}</p>
+		{% endfor %}
+	</div>
+	<div class="col-sm-3"></div>
+</div>
+{% endblock %}
