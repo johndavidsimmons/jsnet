@@ -21,8 +21,12 @@ def create_routes(app):
 	def index():
 		try:
 			url = 'http://ws.audioscrobbler.com/2.0/?method=user.getRecentTracks&limit=1&user=N4JnBv0pK&api_key=67b1e3b632d041f5462bb684047653bb&format=json'
-			track = get(url, 'html5lib').json()['recenttracks']['track'][0]['name']
-			artist = get(url, 'html5lib').json()['recenttracks']['track'][0]['artist']['#text']
+			try:
+				track = get(url, 'html5lib').json()['recenttracks']['track'][0]['name']
+				artist = get(url, 'html5lib').json()['recenttracks']['track'][0]['artist']['#text']
+			except:
+				track = 'Trouble connecting to Last.FM'
+				artist = ' '
 			return render_template('index.html', CONTENT_DICT = CONTENT_DICT, track = track, artist = artist)
 		except Exception as e:
 			return render_template('500.html', CONTENT_DICT = CONTENT_DICT, error = e)
@@ -42,9 +46,9 @@ def create_routes(app):
 			return render_template('500.html', CONTENT_DICT = CONTENT_DICT, error = e)
 
 
-create_routes(app)
+# create_routes(app)
 
-# if __name__ == "__main__":
-# 	create_routes(app)
-# 	app.debug = True
-# 	app.run()
+if __name__ == "__main__":
+	create_routes(app)
+	app.debug = True
+	app.run()

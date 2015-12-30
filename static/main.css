@@ -3,17 +3,16 @@
 ****************************/
 .navbar-default {
 	background-color: #fff;
-	border: 1px solid transparent;
+	border-bottom: none;
 	
 }
 
 .navbar-default .navbar-nav>li>a {
 	color: #000;
 	font-weight: bold;
-	border-bottom: 2px solid transparent;
 }
-.selected {
-	border-bottom: 2px solid black;
+.navbar-default .navbar-nav>li>a.selected {
+	border-bottom: 2px solid #000;
 }
 
 /****************************
@@ -45,6 +44,10 @@ footer {
 	padding: 2em;
 }
 
+.sammy {
+	cursor: pointer;
+}
+
 /****************************
 		Resume
 ****************************/
@@ -53,6 +56,37 @@ footer {
 	color: #bbb;
 }
 
+/****************************
+		Projects
+****************************/
+.project-icon {
+	cursor: pointer;
+	
+}
 
+
+.project-img {
+	border: 1px solid #000;
+}
+
+
+/* Important part */
+.modal-dialog{
+    overflow-y: initial !important
+}
+.modal-body{
+    height: 550px;
+    overflow-y: auto;
+}
+
+.modal-title {
+	display: inline;
+}
 
 /*Hide bio image on mobile*/
+
+@media (max-width: 768px) {
+	img[alt="John Simmons portrait"] {
+		display: none;
+	}
+}

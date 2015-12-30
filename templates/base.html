@@ -3,13 +3,13 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript" src="static/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="static/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<link href='https://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="static/main.css">
-	<title>John Simmons
+	<title>{{ CONTENT_DICT['name'] }}
 		{% for item in CONTENT_DICT['Navigation'] %}
 			{% if item[1] == request.path and item[1] != "/" %}
 			 	- {{ item[0] }}
@@ -27,18 +27,18 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="{{ url_for('index') }}">John Simmons</a>
+	      <a class="navbar-brand" href="{{ url_for('index') }}">{{ CONTENT_DICT['name'] }}</a>
 	    </div>
 
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav navbar-right">
 	        {% for item in CONTENT_DICT['Navigation'] %}
-				<li role="presentation" class="{% if item[1] == request.path %}selected{% endif %}">
+				<li role="presentation" >
 					{% if item[1] != request.path %}
 						<a href="{{ item[1] }}">{{ item[0]|safe }}</a>
 					{% else %}
-						<a>{{ item[0] }}</a>
+						<a class="selected">{{ item[0] }}</a>
 					{% endif %}
 				</li>
 			{% endfor %}
@@ -51,7 +51,7 @@
 		{% block content %}
 		{% endblock %}
 		<footer>
-			<small><p class="text-center">John Simmons &copy; 2016</p></small>
+			<small><p class="text-center">{{ CONTENT_DICT['name'] }} &copy; 2016</p></small>
 		</footer>
 	</div>
 </body>

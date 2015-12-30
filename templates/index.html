@@ -10,9 +10,9 @@
 		<p class="par push-lg">{{ CONTENT_DICT['Home']['bio']|safe }}</p>
 		<div class="row push-lg center-block">
 				{% for key, values in CONTENT_DICT['Social'].items() %}
-				<div class="col-xs-3">
-				<a href="{{ values.link }}"><i class="{{ values.fa }}"></i></a>
-				</div>
+					<div class="col-xs-3">
+						<a href="{{ values.link }}" target="_blank"><i class="{{ values.fa4x }}"></i></a>
+					</div>
 				{% endfor %}
 		</div>
 		<p class="lastfm text-center">
@@ -21,5 +21,10 @@
 	</div>
 	<div class="col-sm-2"></div>
 </div>
-
+<script type="text/javascript">
+	// Sammy picture toggle
+	$('.sammy').on('click', function() {
+		$('img[alt="John Simmons portrait"]').attr( "src", "static/img/sam.png" );
+	});
+</script>
 {% endblock %}

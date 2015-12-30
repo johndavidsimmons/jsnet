@@ -1,5 +1,53 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<p>{{ CONTENT_DICT['Projects']['name'] }}</p>
+<div class="row">
+	<div class="col-sm-2"></div>
+	<div class="col-sm-8">
+		<h1 class="push-sm">Projects</h1>
+		<div class="row">
+			{% for key, values in CONTENT_DICT['Projects'].items()  %}
+			<div class="col-sm-4">
+			 	<!-- Img -->
+			 	<strong><p>{{ values.name }}</p></strong>
+			 	<div class="project-icon"> 
+				 	<img data-toggle="modal" data-target="#{{ key }}Modal" src="{{ values.img[0] }}" alt="" class="img-responsive center-block">
+				</div>
+				<!-- Modal -->
+				<div class="modal fade" id="{{ key }}Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				        <h2 class="modal-title" id="myModalLabel">{{ values.name }}</h2>&nbsp;&nbsp;<a href="{{ values.link }}" target="_blank"><i class="{{ CONTENT_DICT['Social']['github']['fa2x'] }}"></i></a>				    
+				      </div>
+				      <div class="modal-body">
+				      	<h3>Overview</h3>
+				        <p>{{ values.overview|safe }}</p>
+				        <div class="row">
+				        	<div class="col-sm-6"><img src="{{ values.img[0] }}" alt="" class="img-responsive project-img"></div>
+				        	<div class="col-sm-6"><img src="{{ values.img[1] }}" alt="" class="img-responsive project-img"></div>
+				        </div>
+				        <h3>Details</h3>
+				        <p>{{ values.details|safe }}</p>
+				        <div class="row">
+				        	<div class="col-sm-6"><img src="{{ values.img[2] }}" alt="" class="img-responsive project-img"></div>
+				        	<div class="col-sm-6"><img src="{{ values.img[3] }}" alt="" class="img-responsive project-img"></div>
+				        </div>
+				        <div class="row">
+				        	<footer>
+				        		<small><p class="text-center">{{ CONTENT_DICT['name'] }} &copy; 2016</p></small>
+				        	</footer>
+				        </div>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				 
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+	<div class="col-sm-2"></div>
+</div>
 {% endblock %}
