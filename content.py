@@ -8,7 +8,7 @@ def Content():
 									['Projects', '/projects', 'Projects'],
 								],	
 					'Home':{
-							'bio' : 'My name is John Simmons and I am a 30-something information technology professional living in the Detroitish area. I love <a href="http://howsyouredge.com/swap/display.php?page=1405" target="_blank">vinyl</a>, <a class="sammy">dachshunds</a>, and skateboarding. My professional pastimes are Python for web development and data analysis, user experience analytics, and anything that uses a Raspberry Pi. I would rather be a carpenter than an architect.'
+							'bio' : 'My name is John Simmons and I am an information technology professional living in the Detroitish area. I love <a href="http://howsyouredge.com/swap/display.php?page=1405" target="_blank">vinyl</a>, <a class="sammy">dachshunds</a>, and skateboarding. My professional pastimes are Python for web development and data analysis, user experience analytics, and anything that uses a Raspberry Pi. I believe that you can\'t build a castle in a day, but you can lay one perfect brick at a time.'
 								},
 					'Resume': [
 								['Quicken Loans', 'http://www.quickenloans.com', 'May 2013 - Present', 'UX Analyst', 'Studying the relationship between user behavior and business analytics of Quicken Loans client facing web products.'],
@@ -36,7 +36,7 @@ def Content():
 						},
 					'Images' : {
 						'portrait' : 'static/img/john.png',
-						'sammy' : 'static/img/sammy.png'
+						'sammy' : 'static/img/sam.png'
 						},
 					'Social' : {
 							'facebook' : {

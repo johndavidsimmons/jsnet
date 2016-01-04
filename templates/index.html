@@ -4,7 +4,12 @@
 <div class="row">
 	<div class="col-sm-2"></div>
 	<div class="col-sm-4">
-		<img src="{{ CONTENT_DICT['Images']['portrait'] }}" alt="John Simmons portrait" class="img-rounded center-block">
+		<div class="flip-container center-block">
+			<div class="flipper">
+				<img src="{{ CONTENT_DICT['Images']['portrait'] }}" alt="John Simmons portrait" class="img-rounded front">
+				<img src="{{ CONTENT_DICT['Images']['sammy'] }}" alt="Sammy" class="img-rounded back">
+			</div>
+		</div>
 	</div>
 	<div class="col-sm-4">
 		<p class="par push-lg">{{ CONTENT_DICT['Home']['bio']|safe }}</p>
@@ -24,7 +29,11 @@
 <script type="text/javascript">
 	// Sammy picture toggle
 	$('.sammy').on('click', function() {
-		$('img[alt="John Simmons portrait"]').attr( "src", "static/img/sam.png" );
+		$('.flip-container .flipper'). css({
+			'-webkit-transform': 'rotateY(180deg)',
+			'-moz-transform': 'rotateY(180deg)',
+			'transform': 'rotateY(180deg)'
+		})
 	});
 </script>
 {% endblock %}
