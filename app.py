@@ -45,6 +45,13 @@ def create_routes(app):
 		except Exception as e:
 			return render_template('500.html', CONTENT_DICT = CONTENT_DICT, error = e)
 
+	@app.route('/ebayscraper')
+	def ebayscraper():
+		try:
+			return render_template('ebayscraper.html', CONTENT_DICT = CONTENT_DICT)
+		except Exception as e:
+			return render_template('500.html', CONTENT_DICT = CONTENT_DICT, error = e)
+
 
 create_routes(app)
 

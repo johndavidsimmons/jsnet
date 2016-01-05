@@ -3,8 +3,7 @@
 ****************************/
 .navbar-default {
 	background-color: #fff;
-	border-bottom: none;
-	
+	border-bottom: none;	
 }
 
 .navbar-default .navbar-nav>li>a {
@@ -83,7 +82,6 @@ footer {
 	-moz-backface-visibility: hidden;
   -o-backface-visibility: hidden;
 	backface-visibility: hidden;
-
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -103,15 +101,22 @@ footer {
 
 
 
-
-
-
 /****************************
 		Resume
 ****************************/
 .res-head {
 	font-size: 1.5em;
 	color: #bbb;
+}
+
+.res-name {
+	font-size: 2.15em;
+	margin-bottom: 0;
+}
+
+.res-con {
+	font-size: 1em;
+	margin-top: 0;
 }
 
 /****************************
@@ -122,34 +127,27 @@ footer {
 	
 }
 
-.project-icon img {
-	-webkit-border-radius: 6px;
-	        border-radius: 6px;
-}
-
-
 .project-img {
 	border: 1px solid #000;
+	margin-top: 1em;
+	margin-bottom: 1em;
 }
 
-
-/* Important part */
-.modal-dialog{
-    overflow-y: initial !important
-}
-.modal-body{
-    height: 550px;
-    overflow-y: auto;
-}
-
-.modal-title {
-	display: inline;
-}
 
 /*Hide bio image on mobile*/
 
 @media (max-width: 768px) {
-	img[alt="John Simmons portrait"] {
+	.flip-container {
 		display: none;
+	}
+
+	.sammy {
+		color: #000;
+		cursor: pointer;
+	}
+
+	.navbar-default .navbar-nav>li>a.selected {
+		border-bottom: none;
+		background-color: lightgray;
 	}
 }
