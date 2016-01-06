@@ -88,7 +88,7 @@ footer {
 }
 
 .front {
-	background: url(img/john.png) 0 0 no-repeat;
+	background: url(/static/img/john.png) 0 0 no-repeat;
 	z-index: 2;
 }
 

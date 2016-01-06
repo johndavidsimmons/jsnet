@@ -12,8 +12,15 @@ CONTENT_DICT = Content()
 def page_not_found(error):
 	try:
 		return render_template('404.html', CONTENT_DICT = CONTENT_DICT, error = error)
-	except:
-		return str(error)
+	except Exception as e:
+		return str(e)
+
+@app.errorhandler(500)
+def error_500(error):
+	try: 
+	    return render_template('500.html', CONTENT_DICT = CONTENT_DICT, error = error)
+	except Exception as e:
+		return str(e)	  
 
 def create_routes(app):
 
@@ -31,21 +38,21 @@ def create_routes(app):
 		except Exception as e:
 			return render_template('500.html', CONTENT_DICT = CONTENT_DICT, error = e)
 
-	@app.route('/resume')
+	@app.route('/resume/')
 	def resume():
 		try:
 			return render_template('resume.html', CONTENT_DICT = CONTENT_DICT)
 		except Exception as e:
 			return render_template('500.html', CONTENT_DICT = CONTENT_DICT, error = e)
 
-	@app.route('/projects')
+	@app.route('/projects/')
 	def projects():
 		try:
 			return render_template('projects.html', CONTENT_DICT = CONTENT_DICT)
 		except Exception as e:
 			return render_template('500.html', CONTENT_DICT = CONTENT_DICT, error = e)
 
-	@app.route('/ebayscraper')
+	@app.route('/ebayscraper/')
 	def ebayscraper():
 		try:
 			return render_template('ebayscraper.html', CONTENT_DICT = CONTENT_DICT)
@@ -53,9 +60,9 @@ def create_routes(app):
 			return render_template('500.html', CONTENT_DICT = CONTENT_DICT, error = e)
 
 
-create_routes(app)
+# create_routes(app)
 
-# if __name__ == "__main__":
-# 	create_routes(app)
-# 	app.debug = True
-# 	app.run()
+if __name__ == "__main__":
+	create_routes(app)
+	app.debug = True
+	app.run()
