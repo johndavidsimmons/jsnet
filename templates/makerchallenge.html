@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="row">
+	<div class="col-sm-6 col-sm-offset-3">
+		<h1>Maker Challenge</h1>
+		<p>{{ CONTENT_DICT['Maker']['desc']|safe }}</p>
+		
+		<div class="ideas">
+			<h3 class="mk-head">Done</h3>
+			<ul>
+				{% for item in CONTENT_DICT['Maker']['ideas']['done'] %}
+					<li class='done'>{{ item }}</li>
+				{% endfor %}
+			</ul>
+
+			<h3 class="mk-head">In-Progress</h3>
+			<ul>
+				{% for item in CONTENT_DICT['Maker']['ideas']['in-progress'] %}
+					<li class="inprog">{{ item }}</li>
+				{% endfor %}
+			</ul>
+
+
+			<h3 class="mk-head">Next</h3>
+			<ul>
+				{% for item in CONTENT_DICT['Maker']['ideas']['upcoming'] %}
+					<li class="next">{{ item }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

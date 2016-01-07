@@ -127,10 +127,43 @@ footer {
 	
 }
 
+/****************************
+		Maker
+****************************/
+
+.ideas li {
+	list-style: none;
+	margin-bottom: .75em;
+}
+
+li.done:before { 
+	font-family: 'FontAwesome';   
+	content: '\f00c';
+	margin:0 10px 0 -15px;
+	color: #6C9F2E;
+}
+
+li.inprog:before {
+	font-family: 'FontAwesome';   
+	content: '\f0ad';
+	margin:0 10px 0 -15px;
+	color: gray;
+}
+
+li.next:before {
+	font-family: 'FontAwesome';   
+	content: '\f054';
+	margin:0 10px 0 -15px;
+}
+
 .project-img {
 	border: 1px solid #000;
 	margin-top: 1em;
 	margin-bottom: 1em;
+}
+
+.mk-head {
+	margin-bottom: 20px;
 }
 
 

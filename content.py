@@ -6,6 +6,7 @@ def Content():
 									['Home', "/", "John Simmons"],
 									['Resume', "/resume/", 'Resume'],
 									['Projects', '/projects/', 'Projects'],
+									['Maker Challenge', "/makerchallenge/", "Maker Challenge"]
 								],	
 					'Home':{
 							'bio' : 'My name is John Simmons and I am an information technology professional living in the Detroitish area. I love <a href="http://howsyouredge.com/swap/display.php?page=1405" target="_blank">vinyl</a>, <a class="sammy">dachshunds</a>, and skateboarding. My professional pastimes are Python for web development and data analysis, user experience analytics, and anything that uses a Raspberry Pi. I believe that you can\'t build a castle in a day, but you can lay one perfect brick at a time.'
@@ -18,7 +19,7 @@ def Content():
 							],
 						'Education':[
 										['University of Michigan', 'https://www.si.umich.edu/', "MS Information", "December 2013", 'The focus of my coursework at UMSI was user experience methodology, behavioral psychology, and web development.'],
-										['Western Michigan University', 'https://wmich.edu/academics/undergraduate/graphic-printing', "BS Imaging", "May 2010", 'The Imaging program at WMU focused on the business and technical aspects side of commercial printing.']
+										['Western Michigan University', 'https://wmich.edu/academics/undergraduate/graphic-printing', "BS Imaging", "May 2010", 'The Imaging program at WMU focused on the business and technical aspects commercial printing.']
 									],
 					'Projects' : {
 							# 'musicbox' : {
@@ -56,6 +57,25 @@ def Content():
 								'link' : 'https://twitter.com/johnsimmons517',
 								'fa4x' : 'fa fa-twitter-square fa-4x'
 							}
-						}
+						},
+					'Maker' : {
+								'ideas' : {
+											'done' :[
+													'Personal website with resume, projects, bio, etc (You are here!)'
+												],
+											'in-progress': [
+													'Pi powered Spotify music box'
+												],
+											'upcoming' : [
+													'1 Model airplane',
+													'1 Model helicopter',
+													'A magnetic wall mounted bottle opener',
+													'Pi zero powered portable Loveline player',
+													'Twitter based budgeting web app',
+													'Mural in the bay window room'
+												]
+											},
+								'desc' : 'Project ideas for the <a href="http://megamaker.co/challenge/">2016 Maker Challenge</a>'
+							}
 					}
 	return CONTENT_DICT
