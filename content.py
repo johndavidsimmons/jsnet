@@ -22,16 +22,22 @@ def Content():
 										['Western Michigan University', 'https://wmich.edu/academics/undergraduate/graphic-printing', "BS Imaging", "May 2010", 'The Imaging program at WMU focused on the business and technical aspects commercial printing.']
 									],
 					'Projects' : {
-							# 'musicbox' : {
-							# 	'name' : 'Ebay Scraper',
-							# 	'link' : 'https://github.com/johndavidsimmons/ebayscrape',
-							# 	'img' : ['static/img/ebaypy.png','static/img/scrape.png', 'static/img/spread.png', 'static/img/tweet.png'],
-							# 	'desc' : "There are a lot of <a href='http://howsyouredge.com/swap/display.php?page=1405' target='_blank'>records</a> I want. As much as I would like to, I do not have time to constantly search eBay for them. Also, a good portion of my want list are rare titles that: do not come up for auction very often thus searching for them typically yields no results. Solution: Remove myself from the equation. Create a list of search queries, search eBay automatically, and return a list of results. Sounds like a perfect job for a web scraper. First, the easy part, I made a plain text file of searches I want to perform. Then, for each search query I use <a href='http://wwwsearch.sourceforge.net/mechanize/'>Mechanize</a> to traverse and search eBay and <a href='http://www.crummy.com/software/BeautifulSoup/'>Beautiful Soup</a> to parse the page of search results. After the results are collected, the <a href='https://github.com/burnash/gspread'>gspread</a> library posts them to a <a href='https://docs.google.com/spreadsheets/d/13oj2hpTJL9blQJdxg4g3A1sM09LEnKCgACZuDio1BXA/edit#gid=1087720188'>Google Spreadsheet</a>. Finally, if there are any rare matches, the program will tweet me."
-							# },
 							'ebayscraper' : {
 								'name' : 'Ebay Scraper',
 								'link' : 'https://github.com/johndavidsimmons/ebayscrape',
 								'img' : ['/static/img/ebaypy.png','/static/img/scrape.png', '/static/img/spread.png', '/static/img/tweet.png'],
+								'desc' : "There are a lot of <a href='http://howsyouredge.com/swap/display.php?page=1405' target='_blank'>records</a> I want. As much as I would like to, I do not have time to constantly search eBay for them. Also, a good portion of my want list are rare titles that: do not come up for auction very often thus searching for them typically yields no results. Solution: Remove myself from the equation. Create a list of search queries, search eBay automatically, and return a list of results. Sounds like a perfect job for a web scraper. First, the easy part, I made a plain text file of searches I want to perform. Then, for each search query I use <a href='http://wwwsearch.sourceforge.net/mechanize/'>Mechanize</a> to traverse and search eBay and <a href='http://www.crummy.com/software/BeautifulSoup/'>Beautiful Soup</a> to parse the page of search results. After the results are collected, the <a href='https://github.com/burnash/gspread'>gspread</a> library posts them to a <a href='https://docs.google.com/spreadsheets/d/13oj2hpTJL9blQJdxg4g3A1sM09LEnKCgACZuDio1BXA/edit#gid=1087720188'>Google Spreadsheet</a>. Finally, if there are any rare matches, the program will tweet me."
+							},
+							'jsnet' : {
+								'name' : 'John-Simmons.net',
+								'link' : 'https://github.com/johndavidsimmons/jsnet',
+								'img' : ['/static/img/jsnet.png','static/img/scrape.png', 'static/img/spread.png', 'static/img/tweet.png'],
+								'desc' : "John-Simmons.net is using the <a href='http://flask.pocoo.org/'>Flask</a> framework and running via <a href='http://www.heroku.com'>Heroku</a>. It was written in Sublime Text 2 using the Emmet and Hayaku plugins. Special thanks to Sentdex and all his fantastic Python tutorials on Youtube and <a href='http://www.pythonprogramming.net'>PythonProgramming.net</a>. Check it out if you are at all interested in Python. This is the third or fourth iteration of this website, and definitely the version that I feel I have done \"right\". At the very least, it is the most concise. Though its creation, I was (and still am) able to hone my skills and apply them to more complex projects. The decision to take programming more seriously was a very logical: I was tired of struggling. My strategy was take it slow, learn (or re-learn) the basics, and build a solid foundation of understanding. I once heard the phrase \"You can't build a castle in a day, but you can lay one perfect brick at a time.\" I feel that is an apt metaphor to describe my learning philosophy in regards to just about anything." 
+							},
+							'pimusicbox' : {
+								'name' : 'Pi Music Box (soon)',
+								'link' : 'https://github.com/johndavidsimmons/pimusic',
+								'img' : ['/static/img/pimusicdiagram.png','static/img/scrape.png', 'static/img/spread.png', 'static/img/tweet.png'],
 								'desc' : "There are a lot of <a href='http://howsyouredge.com/swap/display.php?page=1405' target='_blank'>records</a> I want. As much as I would like to, I do not have time to constantly search eBay for them. Also, a good portion of my want list are rare titles that: do not come up for auction very often thus searching for them typically yields no results. Solution: Remove myself from the equation. Create a list of search queries, search eBay automatically, and return a list of results. Sounds like a perfect job for a web scraper. First, the easy part, I made a plain text file of searches I want to perform. Then, for each search query I use <a href='http://wwwsearch.sourceforge.net/mechanize/'>Mechanize</a> to traverse and search eBay and <a href='http://www.crummy.com/software/BeautifulSoup/'>Beautiful Soup</a> to parse the page of search results. After the results are collected, the <a href='https://github.com/burnash/gspread'>gspread</a> library posts them to a <a href='https://docs.google.com/spreadsheets/d/13oj2hpTJL9blQJdxg4g3A1sM09LEnKCgACZuDio1BXA/edit#gid=1087720188'>Google Spreadsheet</a>. Finally, if there are any rare matches, the program will tweet me."
 							}
 						},
@@ -72,7 +78,8 @@ def Content():
 													'A magnetic wall mounted bottle opener',
 													'Pi zero powered portable Loveline player',
 													'Twitter based budgeting web app',
-													'Mural in the bay window room'
+													'Mural in the bay window room',
+													'Pi Magic Mirror'
 												]
 											},
 								'desc' : 'Project ideas for the <a href="http://megamaker.co/challenge/">2016 Maker Challenge</a>'

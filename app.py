@@ -59,6 +59,20 @@ def create_routes(app):
 		except Exception as e:
 			return render_template('500.html', CONTENT_DICT = CONTENT_DICT, error = e)
 
+	@app.route('/pimusicbox/')
+	def pimusicbox():
+		try:
+			return render_template('pimusicbox.html', CONTENT_DICT = CONTENT_DICT)
+		except Exception as e:
+			return render_template('500.html', CONTENT_DICT = CONTENT_DICT, error = e)
+			
+	@app.route('/jsnet/')
+	def jsnet():
+		try:
+			return render_template('jsnet.html', CONTENT_DICT = CONTENT_DICT)
+		except Exception as e:
+			return render_template('500.html', CONTENT_DICT = CONTENT_DICT, error = e)						
+
 	@app.route('/makerchallenge/')
 	def makerchallenge():
 		try:
