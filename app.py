@@ -18,7 +18,7 @@ def page_not_found(error):
 @app.errorhandler(500)
 def error_500(error):
 	try: 
-	    return render_template('500.html', CONTENT_DICT = CONTENT_DICT, error = error)
+	    return str(error)
 	except Exception as e:
 		return str(e)	  
 

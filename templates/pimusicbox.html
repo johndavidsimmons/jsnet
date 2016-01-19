@@ -6,18 +6,39 @@
 	<div class="col-sm-6 col-sm-offset-3">
 		<p><a href="{{ url_for('projects') }}"><i class="fa fa-arrow-left"></i> Projects</a></p>
 		<h1>{{ CONTENT_DICT['Projects']['pimusicbox']['name'] }}</h1>
-		<h4 class='push-sm'>Raspberry Pi Spotify Radio &mdash; <a href="{{ CONTENT_DICT['Projects']['pimusicbox']['link'] }}" target="_blank"><i class="{{ CONTENT_DICT['Social']['github']['fa1x'] }}"></i></a></h4> 
-		<p>{{ CONTENT_DICT['Projects']['pimusicbox']['desc'][:481]|safe }}</p>
-			<div class="row push-sm">
-				<div class="col-sm-6"><img src="{{ CONTENT_DICT['Projects']['pimusicbox']['img'][0] }}" class="center-block project-img img-rounded"></div>
-				<div class="col-sm-6"><img src="{{ CONTENT_DICT['Projects']['pimusicbox']['img'][1] }}" class="center-block project-img img-rounded"></div>
-			</div>
-		<p>{{ CONTENT_DICT['Projects']['pimusicbox']['desc'][481:]|safe }}</p>
+		<h4 class='push-sm'>A Raspberry Pi Spotify Radio &mdash; <a href="{{ CONTENT_DICT['Projects']['pimusicbox']['link'] }}" target="_blank"><i class="{{ CONTENT_DICT['Social']['github']['fa1x'] }}"></i></a></h4> 
+		<p>{{ CONTENT_DICT['Projects']['pimusicbox']['desc'][:271]|safe }}</p>
+		<p>{{ CONTENT_DICT['Projects']['pimusicbox']['desc'][271:982]|safe }}</p>
+		<p>{{ CONTENT_DICT['Projects']['pimusicbox']['desc'][982:1371]|safe }}</p>
+		<p>{{ CONTENT_DICT['Projects']['pimusicbox']['desc'][1371:]|safe }}</p>
+		<div class="row" data-featherlight-gallery
+			  data-featherlight-filter="a">
+			{% for item in CONTENT_DICT['Projects']['pimusicbox']['img'][:4] %}
+				<div class="col-sm-3"><a class="gallery" href="#" data-featherlight="{{ item['path'] }}"><img  alt="{{ item['alt'] }}" src="{{ item['path'] }}" class="project-img img-rounded"></a></div>
+			{% endfor %}
+		</div>
 		<div class="row">
-			<div class="col-sm-6"><img src="{{ CONTENT_DICT['Projects']['pimusicbox']['img'][2] }}" class="center-block project-img img-rounded"></div>
-			<div class="col-sm-6"><img src="{{ CONTENT_DICT['Projects']['pimusicbox']['img'][3] }}" class="center-block project-img img-rounded"></div>
+			{% for item in CONTENT_DICT['Projects']['pimusicbox']['img'][4:] %}
+				<div class="col-sm-3"><a class="gallery" href="#" data-featherlight="{{ item['path'] }}"><img  alt="{{ item['alt'] }}" src="{{ item['path'] }}" class="project-img img-rounded"></a></div>
+			{% endfor %}
 		</div>
 	</div>
 </div>
 
+
+<script type="text/javascript">
+	$('a.gallery').featherlightGallery({
+	    previousIcon: '«',
+	      nextIcon: '»',
+	      galleryFadeIn: 300,
+	      openSpeed: 300
+	});
+
+	$.featherlightGallery.prototype.afterContent = function() {
+	  var caption = this.$currentTarget.find('img').attr('alt');
+	  this.$instance.find('.caption').remove();
+	  $('<div class="caption">').text(caption).appendTo(this.$instance.find('.featherlight-content'));
+	};
+
+</script>
 {% endblock %}
