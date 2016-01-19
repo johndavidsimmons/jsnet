@@ -8,16 +8,34 @@
 		<h1>{{ CONTENT_DICT['Projects']['ebayscraper']['name'] }}</h1>
 		<h4 class='push-sm'>An eBay searching script &mdash; <a href="{{ CONTENT_DICT['Projects']['ebayscraper']['link'] }}" target="_blank"><i class="{{ CONTENT_DICT['Social']['github']['fa1x'] }}"></i></a></h4> 
 		<p>{{ CONTENT_DICT['Projects']['ebayscraper']['desc'][:481]|safe }}</p>
-			<div class="row push-sm">
-				<div class="col-sm-6"><img src="{{ CONTENT_DICT['Projects']['ebayscraper']['img'][0] }}" class="center-block project-img img-rounded"></div>
-				<div class="col-sm-6"><img src="{{ CONTENT_DICT['Projects']['ebayscraper']['img'][1] }}" class="center-block project-img img-rounded"></div>
-			</div>
 		<p>{{ CONTENT_DICT['Projects']['ebayscraper']['desc'][481:]|safe }}</p>
-		<div class="row">
-			<div class="col-sm-6"><img src="{{ CONTENT_DICT['Projects']['ebayscraper']['img'][2] }}" class="center-block project-img img-rounded"></div>
-			<div class="col-sm-6"><img src="{{ CONTENT_DICT['Projects']['ebayscraper']['img'][3] }}" class="center-block project-img img-rounded"></div>
+		<div class="row" data-featherlight-gallery
+			  data-featherlight-filter="a">
+			<div class="col-sm-3"><a class="gallery" href="#" data-featherlight="{{ CONTENT_DICT['Projects']['ebayscraper']['img'][0]['path'] }}"><img  alt="{{ CONTENT_DICT['Projects']['ebayscraper']['img'][0]['alt'] }}" src="{{ CONTENT_DICT['Projects']['ebayscraper']['img'][0]['path'] }}" class="project-img img-rounded"></a></div>
+			<div class="col-sm-3"><a class="gallery" href="#" data-featherlight="{{ CONTENT_DICT['Projects']['ebayscraper']['img'][1]['path'] }}"><img  alt="{{ CONTENT_DICT['Projects']['ebayscraper']['img'][1]['alt'] }}" src="{{ CONTENT_DICT['Projects']['ebayscraper']['img'][1]['path'] }}" class="project-img img-rounded"></a></div>
+			<div class="col-sm-3"><a class="gallery" href="#" data-featherlight="{{ CONTENT_DICT['Projects']['ebayscraper']['img'][2]['path'] }}"><img  alt="{{ CONTENT_DICT['Projects']['ebayscraper']['img'][2]['alt'] }}" src="{{ CONTENT_DICT['Projects']['ebayscraper']['img'][2]['path'] }}" class="project-img img-rounded"></a></div>
+			<div class="col-sm-3"><a class="gallery" href="#" data-featherlight="{{ CONTENT_DICT['Projects']['ebayscraper']['img'][3]['path'] }}"><img  alt="{{ CONTENT_DICT['Projects']['ebayscraper']['img'][3]['alt'] }}" src="{{ CONTENT_DICT['Projects']['ebayscraper']['img'][3]['path'] }}" class="project-img img-rounded"></a></div>
 		</div>
 	</div>
 </div>
 
+
+<script type="text/javascript">
+	$('a.gallery').featherlightGallery({
+	    previousIcon: '«',
+	      nextIcon: '»',
+	      galleryFadeIn: 300,
+	      openSpeed: 300
+	});
+
+	$.featherlightGallery.prototype.afterContent = function() {
+	  var caption = this.$currentTarget.find('img').attr('alt');
+	  this.$instance.find('.caption').remove();
+	  $('<div class="caption">').text(caption).appendTo(this.$instance.find('.featherlight-content'));
+	};
+
+	$('img').each(function(index) {
+		$(this).css({'height': '115px', 'width':'110px'})
+	});
+</script>
 {% endblock %}

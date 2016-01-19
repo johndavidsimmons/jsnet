@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="row">
+	<div class="col-sm-6 col-sm-offset-3">
+		<p><a href="{{ url_for('projects') }}"><i class="fa fa-arrow-left"></i> Projects</a></p>
+		<h1>{{ CONTENT_DICT['Projects']['pimusicbox']['name'] }}</h1>
+		<h4 class='push-sm'>Raspberry Pi Spotify Radio &mdash; <a href="{{ CONTENT_DICT['Projects']['pimusicbox']['link'] }}" target="_blank"><i class="{{ CONTENT_DICT['Social']['github']['fa1x'] }}"></i></a></h4> 
+		<p>{{ CONTENT_DICT['Projects']['pimusicbox']['desc'][:481]|safe }}</p>
+			<div class="row push-sm">
+				<div class="col-sm-6"><img src="{{ CONTENT_DICT['Projects']['pimusicbox']['img'][0] }}" class="center-block project-img img-rounded"></div>
+				<div class="col-sm-6"><img src="{{ CONTENT_DICT['Projects']['pimusicbox']['img'][1] }}" class="center-block project-img img-rounded"></div>
+			</div>
+		<p>{{ CONTENT_DICT['Projects']['pimusicbox']['desc'][481:]|safe }}</p>
+		<div class="row">
+			<div class="col-sm-6"><img src="{{ CONTENT_DICT['Projects']['pimusicbox']['img'][2] }}" class="center-block project-img img-rounded"></div>
+			<div class="col-sm-6"><img src="{{ CONTENT_DICT['Projects']['pimusicbox']['img'][3] }}" class="center-block project-img img-rounded"></div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

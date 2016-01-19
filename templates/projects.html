@@ -9,7 +9,7 @@
 			<div class="col-sm-4">
 			 	<strong><p>{{ values.name }}</p></strong>
 			 	<div class="project-icon"> 
-				 	<a href="{{ url_for(key) }}"><img src="{{ values.img[0] }}" alt="" class="img-responsive center-block img-rounded"></a>
+				 	<a href="{{ url_for(key) }}"><img src="{{ values.img[0]['path'] }}" alt="" class="img-responsive center-block img-rounded"></a>
 				</div>
 			</div>
 			{% endfor %}
@@ -19,5 +19,9 @@
 <script type="text/javascript">
 	$('img[src="/static/img/pimusicdiagram.png"]').click(function(e) { e.preventDefault();});
 	$('img[src="/static/img/pimusicdiagram.png"]').css('cursor' , 'default')
+
+	$('img').each(function(index) {
+		$(this).css({'height': '165px', 'width':'165px'})
+	});
 </script>
 {% endblock %}
