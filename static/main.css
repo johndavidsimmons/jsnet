@@ -85,6 +85,9 @@ footer {
 	position: absolute;
 	top: 0;
 	left: 0;
+	-webkit-box-shadow: 0px 0px 7px 2px rgba(167,167,167,1);
+	-moz-box-shadow: 0px 0px 7px 2px rgba(167,167,167,1);
+	box-shadow: 0px 0px 7px 2px rgba(167,167,167,1);
 }
 
 .front {
@@ -126,6 +129,21 @@ footer {
 	cursor: pointer;
 }
 
+.project-icon img {
+	-webkit-box-shadow: 0px 0px 7px 2px rgba(167,167,167,1);
+	-moz-box-shadow: 0px 0px 7px 2px rgba(167,167,167,1);
+	box-shadow: 0px 0px 7px 2px rgba(167,167,167,1);
+	-webkit-transition: -webkit-transform 0.25s;
+	transition: transform 0.25s;
+}
+
+.project-icon img:hover {
+	transition-timing-function: linear;
+	-webkit-transition-timing-function: linear;
+	transform: scale(1.02);
+	-webkit-transform: scale(1.02);
+}
+
 .caption {
 	font-weight: bold;
 	margin-top: 10px;
@@ -165,6 +183,19 @@ li.next:before {
 	margin-bottom: 1em;
 	height: 100%;
 	width: 100%;
+	-webkit-box-shadow: 0px 0px 7px 2px rgba(167,167,167,1);
+	-moz-box-shadow: 0px 0px 7px 2px rgba(167,167,167,1);;
+	box-shadow: 0px 0px 7px 2px rgba(167,167,167,1);;
+	-webkit-transition: -webkit-transform 0.25s;
+	transition: transform 0.25s;
+
+}
+
+.project-img:hover {
+	transition-timing-function: linear;
+	-webkit-transition-timing-function: linear;
+	transform: scale(1.05);
+	-webkit-transform: scale(1.05);
 }
 
 .mk-head {
