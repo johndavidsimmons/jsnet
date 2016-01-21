@@ -8,9 +8,10 @@
 		<h1>{{ CONTENT_DICT['Projects']['pimusicbox']['name'] }}</h1>
 		<h4 class='push-sm'>A Raspberry Pi Spotify Radio &mdash; <a href="{{ CONTENT_DICT['Projects']['pimusicbox']['link'] }}" target="_blank"><i class="{{ CONTENT_DICT['Social']['github']['fa1x'] }}"></i></a></h4> 
 		<p>{{ CONTENT_DICT['Projects']['pimusicbox']['desc'][:271]|safe }}</p>
-		<p>{{ CONTENT_DICT['Projects']['pimusicbox']['desc'][271:982]|safe }}</p>
-		<p>{{ CONTENT_DICT['Projects']['pimusicbox']['desc'][982:1371]|safe }}</p>
-		<p>{{ CONTENT_DICT['Projects']['pimusicbox']['desc'][1371:]|safe }}</p>
+		<p class="push-sm">{{ CONTENT_DICT['Projects']['pimusicbox']['desc'][271:676]|safe }}</p>
+		<iframe class="push-sm" width="560" height="315" src="https://www.youtube.com/embed/MF0rO8s-TcI" frameborder="0" allowfullscreen></iframe>
+		<p>{{ CONTENT_DICT['Projects']['pimusicbox']['desc'][676:1066]|safe }}</p>
+		<em><p>{{ CONTENT_DICT['Projects']['pimusicbox']['desc'][1066:]|safe }}</p></em>
 		<div class="row" data-featherlight-gallery
 			  data-featherlight-filter="a">
 			{% for item in CONTENT_DICT['Projects']['pimusicbox']['img'][:4] %}
