@@ -11,14 +11,14 @@
 			<h3 class="mk-head">Done</h3>
 			<ul>
 				{% for item in CONTENT_DICT['Maker']['ideas']['done'] %}
-					<li class='done'>{{ item }}</li>
+					<li class='done'>{{ item|safe }}</li>
 				{% endfor %}
 			</ul>
 
 			<h3 class="mk-head">In-Progress</h3>
 			<ul>
 				{% for item in CONTENT_DICT['Maker']['ideas']['in-progress'] %}
-					<li class="inprog">{{ item }}</li>
+					<li class="inprog">{{ item|safe }}</li>
 				{% endfor %}
 			</ul>
 

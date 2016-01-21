@@ -42,7 +42,7 @@ def Content():
 								'desc' : "John-Simmons.net is using the <a href='http://flask.pocoo.org/'>Flask</a> framework and running via <a href='http://www.heroku.com'>Heroku</a>. It was written in Sublime Text 2 using the Emmet and Hayaku plugins. Special thanks to Sentdex and all his fantastic Python tutorials on Youtube and <a href='http://www.pythonprogramming.net'>PythonProgramming.net</a>. Check it out if you are at all interested in Python. This is the third or fourth iteration of this website, and definitely the version that I feel I have done \"right\". At the very least, it is the most concise. Though its creation, I was (and still am) able to hone my skills and apply them to more complex projects. The decision to take programming more seriously was a very logical: I was tired of struggling. My strategy was take it slow, learn (or re-learn) the basics, and build a solid foundation of understanding. I once heard the phrase \"You can't build a castle in a day, but you can lay one perfect brick at a time.\" I feel that is an apt metaphor to describe my learning philosophy in regards to just about anything." 
 							},
 							'pimusicbox' : {
-								'name' : 'Pi Music Box (WIP)',
+								'name' : 'Pi Music Box',
 								'link' : 'https://github.com/johndavidsimmons/pimusic',
 								'img' : [
 											{'path':'/static/img/finalbox.png', 'alt' : 'My completed Spotify Music Box'},
@@ -82,17 +82,17 @@ def Content():
 					'Maker' : {
 								'ideas' : {
 											'done' :[
-													'Personal website with resume, projects, bio, etc (You are here!)'
+													'Personal website with resume, projects, bio, etc (You are here!)',
+													'<a href="/pimusicbox/">Pi powered Spotify music box</a>'
 												],
 											'in-progress': [
-													'Pi powered Spotify music box'
+													'Twitter based budgeting web app'
 												],
 											'upcoming' : [
 													'1 Model airplane',
 													'1 Model helicopter',
 													'A magnetic wall mounted bottle opener',
 													'Pi zero powered portable Loveline player',
-													'Twitter based budgeting web app',
 													'Mural in the bay window room',
 													'Pi Magic Mirror'
 												]
