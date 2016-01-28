@@ -83,18 +83,18 @@ def Content():
 								'ideas' : {
 											'done' :[
 													'Personal website with resume, projects, bio, etc (You are here!)',
-													'<a href="/pimusicbox/">Pi powered Spotify music box</a>'
+													'<a href="/pimusicbox/">Pi powered Spotify music box</a>',
+													'Twitter Budgeting App (Hackathon Project)'
 												],
 											'in-progress': [
-													'Twitter based budgeting web app'
+													'Pi Powered Magic Mirror'
 												],
 											'upcoming' : [
 													'1 Model airplane',
 													'1 Model helicopter',
 													'A magnetic wall mounted bottle opener',
 													'Pi zero powered portable Loveline player',
-													'Mural in the bay window room',
-													'Pi Magic Mirror'
+													'Mural in the bay window room'
 												]
 											},
 								'desc' : 'Project ideas for the <a href="http://megamaker.co/challenge/">2016 Maker Challenge</a>'
