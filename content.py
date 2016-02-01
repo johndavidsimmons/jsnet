@@ -87,14 +87,16 @@ def Content():
 													'Twitter Budgeting App (Hackathon Project)'
 												],
 											'in-progress': [
-													'Pi Powered Magic Mirror'
+													'Pi Powered Magic Mirror',
+													'Record collecting web app'
 												],
 											'upcoming' : [
 													'1 Model airplane',
 													'1 Model helicopter',
 													'A magnetic wall mounted bottle opener',
 													'Pi zero powered portable Loveline player',
-													'Mural in the bay window room'
+													'Mural in the bay window room',
+													'Socket wrench organizing peg board'
 												]
 											},
 								'desc' : 'Project ideas for the <a href="http://megamaker.co/challenge/">2016 Maker Challenge</a>'
