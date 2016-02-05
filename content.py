@@ -83,7 +83,7 @@ def Content():
 								'ideas' : {
 											'done' :[
 													'Personal website with resume, projects, bio, etc (You are here!)',
-													'<a href="/pimusicbox/">Pi powered Spotify music box</a>',
+													'<a href="/projects/pimusicbox/">Pi powered Spotify music box</a>',
 													'Twitter Budgeting App (Hackathon Project)'
 												],
 											'in-progress': [
@@ -96,7 +96,8 @@ def Content():
 													'A magnetic wall mounted bottle opener',
 													'Pi zero powered portable Loveline player',
 													'Mural in the bay window room',
-													'Socket wrench organizing peg board'
+													'Socket wrench organizing peg board',
+													'Craigslist Scraper'
 												]
 											},
 								'desc' : 'Project ideas for the <a href="http://megamaker.co/challenge/">2016 Maker Challenge</a>'

@@ -52,21 +52,21 @@ def create_routes(app):
 		except Exception as e:
 			return render_template('500.html', CONTENT_DICT = CONTENT_DICT, error = e)
 
-	@app.route('/ebayscraper/')
+	@app.route('/projects/ebayscraper/')
 	def ebayscraper():
 		try:
 			return render_template('ebayscraper.html', CONTENT_DICT = CONTENT_DICT)
 		except Exception as e:
 			return render_template('500.html', CONTENT_DICT = CONTENT_DICT, error = e)
 
-	@app.route('/pimusicbox/')
+	@app.route('/projects/pimusicbox/')
 	def pimusicbox():
 		try:
 			return render_template('pimusicbox.html', CONTENT_DICT = CONTENT_DICT)
 		except Exception as e:
 			return render_template('500.html', CONTENT_DICT = CONTENT_DICT, error = e)
 			
-	@app.route('/jsnet/')
+	@app.route('/projects/jsnet/')
 	def jsnet():
 		try:
 			return render_template('jsnet.html', CONTENT_DICT = CONTENT_DICT)
@@ -81,9 +81,9 @@ def create_routes(app):
 			return render_template('500.html', CONTENT_DICT = CONTENT_DICT, error = e)
 
 
-create_routes(app)
+# create_routes(app)
 
-# if __name__ == "__main__":
-# 	create_routes(app)
-# 	app.debug = True
-# 	app.run()
+if __name__ == "__main__":
+	create_routes(app)
+	app.debug = True
+	app.run()
