@@ -46,7 +46,7 @@ def Content():
 								'link' : 'mirror.john-simmons.net',
 								'img' : 'pathtoimages',
 								'desc' : "I was inspired to make my Magic Mirror after seeing several posts on r/diy and r/raspberry_pi about them. What I never understood about these mirrors is how the text is 'projected' onto the mirror. Learning that its just a black webpage with white text behind a two-way mirror made making one of these much more realistic. I started out by building the frame with some old 2x4s I had in the basement. I figured I would do the hardest (at least for me) part first and if I couldn't get it right at least I didn't waste a bunch of time and money. I picked out, but held off on purchasing the <a href='http://www.amazon.com/gp/product/B00KSBBGA4?psc=1&redirect=true&ref_=oh_aui_detailpage_o02_s00'>monitor</a> I was going to use to get the measurements, and after several attempts I was able to build a square-ish frame. After assembling and staining, I was ready to work on the code. Since it is a live webpage it is easy to update and add components should I so desire. The current version has the time, date, sunrise/sunset times, current temp, daily high/low temps, weather conditions icon, and the top story from r/news. "
-							}
+							},
 							'pimusicbox' : {
 								'name' : 'Pi Music Box',
 								'link' : 'https://github.com/johndavidsimmons/pimusic',
