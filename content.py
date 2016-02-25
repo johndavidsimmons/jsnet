@@ -41,6 +41,12 @@ def Content():
 										],
 								'desc' : "John-Simmons.net is using the <a href='http://flask.pocoo.org/'>Flask</a> framework and running via <a href='http://www.heroku.com'>Heroku</a>. It was written in Sublime Text 2 using the Emmet and Hayaku plugins. Special thanks to Sentdex and all his fantastic Python tutorials on Youtube and <a href='http://www.pythonprogramming.net'>PythonProgramming.net</a>. Check it out if you are at all interested in Python. This is the third or fourth iteration of this website, and definitely the version that I feel I have done \"right\". At the very least, it is the most concise. Though its creation, I was (and still am) able to hone my skills and apply them to more complex projects. The decision to take programming more seriously was a very logical: I was tired of struggling. My strategy was take it slow, learn (or re-learn) the basics, and build a solid foundation of understanding. I once heard the phrase \"You can't build a castle in a day, but you can lay one perfect brick at a time.\" I feel that is an apt metaphor to describe my learning philosophy in regards to just about anything." 
 							},
+							'magicmirror' : {
+								'name' : 'Magic Mirror',
+								'link' : 'mirror.john-simmons.net',
+								'img' : 'pathtoimages',
+								'desc' : "I was inspired to make my Magic Mirror after seeing several posts on r/diy and r/raspberry_pi about them. What I never understood about these mirrors is how the text is 'projected' onto the mirror. Learning that its just a black webpage with white text behind a two-way mirror made making one of these much more realistic. I started out by building the frame with some old 2x4s I had in the basement. I figured I would do the hardest (at least for me) part first and if I couldn't get it right at least I didn't waste a bunch of time and money. I picked out, but held off on purchasing the <a href='http://www.amazon.com/gp/product/B00KSBBGA4?psc=1&redirect=true&ref_=oh_aui_detailpage_o02_s00'>monitor</a> I was going to use to get the measurements, and after several attempts I was able to build a square-ish frame. After assembling and staining, I was ready to work on the code. Since it is a live webpage it is easy to update and add components should I so desire. The current version has the time, date, sunrise/sunset times, current temp, daily high/low temps, weather conditions icon, and the top story from r/news. "
+							}
 							'pimusicbox' : {
 								'name' : 'Pi Music Box',
 								'link' : 'https://github.com/johndavidsimmons/pimusic',
@@ -84,10 +90,11 @@ def Content():
 											'done' :[
 													'Personal website with resume, projects, bio, etc (You are here!)',
 													'<a href="/projects/pimusicbox/">Pi powered Spotify music box</a>',
-													'Twitter Budgeting App (Hackathon Project)'
+													'Twitter Budgeting App (Hackathon Project)',
+													'<a href="https://medium.com/@johndavidsimmons/email-sign-up-widget-in-qualtrics-407c384e5ad3#.79rw5rtu8">A Medium post</a>',
+													'Pi Powered Magic Mirror (write up soon)'
 												],
 											'in-progress': [
-													'Pi Powered Magic Mirror',
 													'Record collecting web app'
 												],
 											'upcoming' : [
@@ -95,9 +102,10 @@ def Content():
 													'1 Model helicopter',
 													'A magnetic wall mounted bottle opener',
 													'Pi zero powered portable Loveline player',
-													'Mural in the bay window room',
 													'Socket wrench organizing peg board',
-													'Craigslist Scraper'
+													'Craigslist Scraper',
+													'A self portrait',
+													'Patterned stairwell'
 												]
 											},
 								'desc' : 'Project ideas for the <a href="http://megamaker.co/challenge/">2016 Maker Challenge</a>'
