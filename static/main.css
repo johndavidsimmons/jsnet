@@ -127,6 +127,7 @@ footer {
 ****************************/
 .project-icon {
 	cursor: pointer;
+	padding-bottom: 1em;
 }
 
 .project-icon img {

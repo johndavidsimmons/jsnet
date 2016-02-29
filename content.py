@@ -43,9 +43,16 @@ def Content():
 							},
 							'magicmirror' : {
 								'name' : 'Magic Mirror',
-								'link' : 'mirror.john-simmons.net',
-								'img' : 'pathtoimages',
-								'desc' : "I was inspired to make my Magic Mirror after seeing several posts on r/diy and r/raspberry_pi about them. What I never understood about these mirrors is how the text is 'projected' onto the mirror. Learning that its just a black webpage with white text behind a two-way mirror made making one of these much more realistic. I started out by building the frame with some old 2x4s I had in the basement. I figured I would do the hardest (at least for me) part first and if I couldn't get it right at least I didn't waste a bunch of time and money. I picked out, but held off on purchasing the <a href='http://www.amazon.com/gp/product/B00KSBBGA4?psc=1&redirect=true&ref_=oh_aui_detailpage_o02_s00'>monitor</a> I was going to use to get the measurements, and after several attempts I was able to build a square-ish frame. After assembling and staining, I was ready to work on the code. Since it is a live webpage it is easy to update and add components should I so desire. The current version has the time, date, sunrise/sunset times, current temp, daily high/low temps, weather conditions icon, and the top story from r/news. "
+								'link' : 'https://github.com/johndavidsimmons/magicmirror',
+								'img' : [
+											{'path':'/static/img/mirrorfinal.png','alt':'The final product'},
+											{'path':'/static/img/monitorteardown.png','alt':'Removing the monitor case'},
+											{'path':'/static/img/mirrorplacement.png','alt':'Wifi is sketchy at best up here, but everything worked out fine'},
+											{'path':'/static/img/piboot.png','alt':'Making sure I have the Pi\'s orientation set correctly'},
+											{'path':'/static/img/framesize.png','alt':'Making sure everything fits before locking it in'},
+											{'path':'/static/img/firstboot.png','alt':'First boot. It works! Better fix that positioning'}
+										],
+								'desc' : "I was inspired to make my Magic Mirror after seeing several posts on r/diy and r/raspberry_pi about them. What I never understood about these mirrors is how the text is 'projected' onto the mirror. Learning that its just a black webpage with white text behind a two-way mirror made making one of these actually seem possible. I started out by building the frame with some old 2x4s I had in the basement. I figured I would do the hardest (at least for me) part first and if I couldn't get it right at least I didn't waste a bunch of time and money. I picked out, but held off on purchasing the <a href='http://www.amazon.com/gp/product/B00KSBBGA4?psc=1&redirect=true&ref_=oh_aui_detailpage_o02_s00'>monitor</a> I was going to use to get the measurements. An added bonus about this monitor is that it has a USB input that can power the Pi. After several attempts I was able to build a square-ish frame. Next time I will definitely spring for a few right angle clamps instead of the needlessly elaborate system I used. The 'mirror' is just plastic with a double sided mirror coating from <a href='http://www.tapplastics.com/product/plastics/cut_to_size_plastic/two_way_mirrored_acrylic/558'>TAP Plastics</a>. It was a lot cheaper than glass, but is flimsy and does not sit flat in the frame unfortunately. After assembling and staining, I bought the monitor and wrote the code. Since the <a href='http://mirror.john-simmons.net'>webpage</a> is live, it is easy to update and add components should I so desire. The current version has the time, date, sunrise/sunset times, current temp, daily high/low temps, weather conditions icon, and the top story from r/news. It pulls new data every 30 minutes. All weather related data is pulled from the <a href='https://developer.yahoo.com/weather/'>Yahoo weather API</a>, and the weather icons are from <a href='http://www.weathericons.io'>weathericons.io</a>. The Reddit feed of course uses the <a href='https://www.reddit.com/dev/api'>Reddit API</a>. In the future I would like to a add a few things like traffic conditions to work, the price of Bitcoin, or watched eBay items that are ending."
 							},
 							'pimusicbox' : {
 								'name' : 'Pi Music Box',
@@ -92,7 +99,8 @@ def Content():
 													'<a href="/projects/pimusicbox/">Pi powered Spotify music box</a>',
 													'Twitter Budgeting App (Hackathon Project)',
 													'<a href="https://medium.com/@johndavidsimmons/email-sign-up-widget-in-qualtrics-407c384e5ad3#.79rw5rtu8">A Medium post</a>',
-													'Pi Powered Magic Mirror (write up soon)'
+													'<a href="/projects/magicmirror">Pi Powered Magic Mirror</a>',
+													'A stair ramp for Sammy'
 												],
 											'in-progress': [
 													'Record collecting web app'
@@ -105,7 +113,8 @@ def Content():
 													'Socket wrench organizing peg board',
 													'Craigslist Scraper',
 													'A self portrait',
-													'Patterned stairwell'
+													'Patterned stairwell',
+													'Backyard Aluminum foundry'
 												]
 											},
 								'desc' : 'Project ideas for the <a href="http://megamaker.co/challenge/">2016 Maker Challenge</a>'

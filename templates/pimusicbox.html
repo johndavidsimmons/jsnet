@@ -14,12 +14,7 @@
 		<em><p>{{ CONTENT_DICT['Projects']['pimusicbox']['desc'][1066:]|safe }}</p></em>
 		<div class="row" data-featherlight-gallery
 			  data-featherlight-filter="a">
-			{% for item in CONTENT_DICT['Projects']['pimusicbox']['img'][:4] %}
-				<div class="col-sm-3"><a class="gallery" href="#" data-featherlight="{{ item['path'] }}"><img  alt="{{ item['alt'] }}" src="{{ item['path'] }}" class="project-img img-rounded"></a></div>
-			{% endfor %}
-		</div>
-		<div class="row">
-			{% for item in CONTENT_DICT['Projects']['pimusicbox']['img'][4:] %}
+			{% for item in CONTENT_DICT['Projects']['pimusicbox']['img'] %}
 				<div class="col-sm-3"><a class="gallery" href="#" data-featherlight="{{ item['path'] }}"><img  alt="{{ item['alt'] }}" src="{{ item['path'] }}" class="project-img img-rounded"></a></div>
 			{% endfor %}
 		</div>
@@ -27,19 +22,6 @@
 </div>
 
 
-<script type="text/javascript">
-	$('a.gallery').featherlightGallery({
-	    previousIcon: '«',
-	      nextIcon: '»',
-	      galleryFadeIn: 300,
-	      openSpeed: 300
-	});
+{% include '_galleryjs.html' %}
 
-	$.featherlightGallery.prototype.afterContent = function() {
-	  var caption = this.$currentTarget.find('img').attr('alt');
-	  this.$instance.find('.caption').remove();
-	  $('<div class="caption">').text(caption).appendTo(this.$instance.find('.featherlight-content'));
-	};
-
-</script>
 {% endblock %}

@@ -71,7 +71,14 @@ def create_routes(app):
 		try:
 			return render_template('jsnet.html', CONTENT_DICT = CONTENT_DICT)
 		except Exception as e:
-			return render_template('500.html', CONTENT_DICT = CONTENT_DICT, error = e)						
+			return render_template('500.html', CONTENT_DICT = CONTENT_DICT, error = e)
+
+	@app.route('/projects/magicmirror/')
+	def magicmirror():
+		try:
+			return render_template('magicmirror.html', CONTENT_DICT = CONTENT_DICT)
+		except Exception as e:
+			return render_template('500.html', CONTENT_DICT = CONTENT_DICT, error = e)							
 
 	@app.route('/makerchallenge/')
 	def makerchallenge():
