@@ -203,6 +203,63 @@ li.next:before {
 	margin-bottom: 20px;
 }
 
+/****************************
+		Records
+****************************/
+
+tr > td {
+	padding: 0.5em 1em 0.5em 0.5em;
+}
+
+
+tr > td:nth-child(1n+0),
+tr > td:nth-child(2n+0) {
+	width: 30%;
+}
+
+tr > td:nth-child(3n+0),
+tr > td:nth-child(4n+0) {
+	width: 10%;
+}
+
+tr > td:nth-child(5n+0) {
+	width: 20%;
+}
+
+thead {
+	border-bottom: 1px solid black !important;
+}
+
+th {
+	padding-bottom: 0.5em !important;
+	/*border: 1px dotted red;*/
+}
+
+tr td.size {
+	vertical-align: bottom !important;
+}
+
+tr:nth-of-type(even) {
+	background-color: #f0f0f0;
+}
+
+.notes {
+	text-align: center;
+}
+
+.count {
+	text-align: right;
+	color: gray;
+	font-style: italic;
+	font-weight: normal;
+}
+
+table {
+	width: 100%;
+	margin-bottom: 2em;
+}
+
+
 
 /*Hide bio image on mobile*/
 

@@ -2,6 +2,7 @@ from flask import Flask, render_template, url_for
 from content import Content
 from requests import get
 import json
+import csv
 
 app = Flask(__name__)
 
@@ -87,10 +88,22 @@ def create_routes(app):
 		except Exception as e:
 			return render_template('500.html', CONTENT_DICT = CONTENT_DICT, error = e)
 
+	@app.route('/records/')
+	def records():
+		try:
+			records = list(json.loads(get('https://sheetsu.com/apis/v1.0/c8f9d5b7').text))
+			seveninches = [record for record in records if record['Size'] == '7']
+			teninches = [record for record in records if record['Size'] == '10']
+			twelveinches = [record for record in records if record['Size'] == '12']
+			return render_template('records.html', CONTENT_DICT = CONTENT_DICT, seveninches = seveninches, teninches = teninches, twelveinches = twelveinches)
+		except Exception as e:
+			# return e
+			return render_template('500.html', CONTENT_DICT = CONTENT_DICT, error = e)			
 
-create_routes(app)
 
-# if __name__ == "__main__":
-# 	create_routes(app)
-# 	app.debug = True
-# 	app.run()
+# create_routes(app)
+
+if __name__ == "__main__":
+	create_routes(app)
+	app.debug = True
+	app.run()

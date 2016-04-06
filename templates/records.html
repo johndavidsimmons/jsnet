@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="row">
+	<div class="col-sm-8 col-sm-offset-2">
+		<h1 class="push-sm">Records</h1>
+		<table>
+			<thead>
+				<tr>
+					<th class="size">7 Inch</th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th colspan='all' class="count">{{ seveninches|length }}</th>
+				</tr>
+			</thead>
+			<tbody>
+			{%  for r in seveninches %}
+				<tr>
+					<td>{{ r['Artist'] }}</td>
+					<td>{{ r['Title'] }}</td>
+					<td>{{ r['Color'] }}</td>
+					<td>{{ r['Year'] }}</td>
+					<td class="notes">{{ r['Notes'] }}</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+
+		<table>
+			<thead>
+				<tr>
+					<th class="size">10 Inch</th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th colspan='all' class="count">{{ teninches|length }}</th>
+				</tr>
+			</thead>
+			<tbody>
+			{%  for r in teninches %}
+				<tr>
+					<td>{{ r['Artist'] }}</td>
+					<td>{{ r['Title'] }}</td>
+					<td>{{ r['Color'] }}</td>
+					<td>{{ r['Year'] }}</td>
+					<td class="notes">{{ r['Notes'] }}</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+
+		<table>
+			<thead>
+				<tr>
+					<th class="size">12 Inch</th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th colspan='all' class="count">{{ twelveinches|length }}</th>
+				</tr>
+			</thead>
+			<tbody>
+			{%  for r in twelveinches %}
+				<tr>
+					<td>{{ r['Artist'] }}</td>
+					<td>{{ r['Title'] }}</td>
+					<td>{{ r['Color'] }}</td>
+					<td>{{ r['Year'] }}</td>
+					<td class="notes">{{ r['Notes'] }}</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+		
+
+
+	</div>
+</div>
+
+
+{% endblock %}
