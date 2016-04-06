@@ -101,9 +101,9 @@ def create_routes(app):
 			return render_template('500.html', CONTENT_DICT = CONTENT_DICT, error = e)			
 
 
-# create_routes(app)
+create_routes(app)
 
-if __name__ == "__main__":
-	create_routes(app)
-	app.debug = True
-	app.run()
+# if __name__ == "__main__":
+# 	create_routes(app)
+# 	app.debug = True
+# 	app.run()
