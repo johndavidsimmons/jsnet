@@ -9,7 +9,7 @@ def Content():
 									['Maker Challenge', "/makerchallenge/", "Maker Challenge"]
 								],	
 					'Home':{
-							'bio' : 'My name is John Simmons and I am an information technology professional living in the Detroitish area. I love <a href="/records">vinyl</a>, <a class="sammy">dachshunds</a>, and skateboarding. My professional pastimes are Python for web development and data analysis, user experience analytics, and anything that uses a Raspberry Pi. I believe that you can\'t build a castle in a day, but you can lay one perfect brick at a time.'
+							'bio' : 'My name is John Simmons and I am an information technology professional living in the Detroitish area. I love <a href="/records">vinyl</a>, <a class="sammy">dachshunds</a>, and skateboarding. My professional pastimes are Python for web development and data analysis, user experience analytics, and anything that uses a Raspberry Pi. I believe that you can\'t build a castle in a day, but you can place one perfect brick at a time.'
 								},
 					'Resume': [
 								['Quicken Loans', 'http://www.quickenloans.com', 'May 2013 - Present', 'UX Analyst', 'Studying the relationship between user behavior and business analytics of Quicken Loans client facing web products.'],
@@ -87,9 +87,9 @@ def Content():
 								'fa4x' : 'fa fa-github-square fa-4x',
 								'fa1x' : 'fa fa-github-square'
 							},
-							'twitter' : {
-								'link' : 'https://twitter.com/johnsimmons517',
-								'fa4x' : 'fa fa-twitter-square fa-4x'
+							'medium' : {
+								'link' : 'https://medium.com/@johndavidsimmons',
+								'fa4x' : 'fa fa-medium fa-4x'
 							}
 						},
 					'Maker' : {
