@@ -26,7 +26,7 @@
 			<h3 class="mk-head">Next</h3>
 			<ul>
 				{% for item in CONTENT_DICT['Maker']['ideas']['upcoming'] %}
-					<li class="next">{{ item }}</li>
+					<li class="next">{{ item|safe }}</li>
 				{% endfor %}
 			</ul>
 		</div>

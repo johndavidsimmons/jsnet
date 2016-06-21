@@ -1,24 +1,30 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block content %}
+
+
+
 <div class="row">
 	<div class="col-sm-6 col-sm-offset-3">
-		<h1 class="push-sm">Projects</h1>
-		<div class="row">
-			{% for key, values in CONTENT_DICT['Projects'].items()  %}
-			<div class="col-sm-4">
-			 	<strong><p>{{ values.name }}</p></strong>
-			 	<div class="project-icon"> 
-				 	<a href="{{ url_for(key) }}"><img src="{{ values.img[0]['path'] }}" alt="" class="img-responsive center-block img-rounded"></a>
-				</div>
-			</div>
+	{% for dict in projects_dict %}
+		{% for _, v in dict.iteritems() %}
+			<h1>{{v['name']}}</h1>
+			<h4 class='push-sm'><a href="{{ v['link'] }}" target="_blank"><i class="{{ CONTENT_DICT['Social']['github']['fa1x'] }}"></i></a><small> | {{ v['date'] }}</small></h4>
+			<p></p>
+			<p>{{ v['desc']|safe }}</p> 
+			{% for img in v['img'] %}
+				<a name="{{ v['name'] }}" class="gallery" href="#" data-featherlight="{{ img['path'] }}"><img src="{{img['path']}}" alt="{{img['alt']}}" class="project-img img-rounded"></a>
 			{% endfor %}
-		</div>
-	</div>
+
+		{% endfor %}
+		<hr>
+	{% endfor %}	
+
 </div>
-<script type="text/javascript">
-	$('img').each(function(index) {
-		$(this).css({'height': '155px', 'width':'165px'})
-	});
-</script>
+</div>
+
+{% include "_galleryjs.html" %}
 {% endblock %}
+
+
+
