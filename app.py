@@ -2,7 +2,7 @@ from flask import Flask, render_template, url_for
 from content import Content
 from requests import get
 import json
-import csv
+import os
 
 app = Flask(__name__)
 
@@ -61,20 +61,37 @@ def create_routes(app):
     @app.route('/records')
     def records():
         try:
-            records = list(json.loads(get('https://sheetsu.com/apis/v1.0/c8f9d5b7').text))
-            seveninches = [record for record in records if record['Size'] == '7']
-            teninches = [record for record in records if record['Size'] == '10']
-            twelveinches = [record for record in records if record['Size'] == '12']
-            return render_template('records.html', CONTENT_DICT=CONTENT_DICT, seveninches=seveninches,
-                                   teninches=teninches, twelveinches=twelveinches)
+            # records = list(json.loads(get('https://sheetsu.com/apis/v1.0/c8f9d5b7').text))
+            # seveninches = [record for record in records if record['Size'] == '7']
+            # teninches = [record for record in records if record['Size'] == '10']
+            # twelveinches = [record for record in records if record['Size'] == '12']
+
+            import csv
+            from collections import OrderedDict
+            f = open('records.csv')
+            reader = csv.reader(f)
+            data = list(reader)
+
+            r = {
+                'a':[lst for lst in data if lst[-1] == '7'],
+                'b':[lst for lst in data if lst[-1] == '10'],
+                'c':[lst for lst in data if lst[-1] == '12']
+            }
+
+            records = OrderedDict(sorted(r.items()))
+
+            return render_template('records.html', CONTENT_DICT=CONTENT_DICT, records=records)
         except Exception as e:
-            # return e
             return render_template('500.html', CONTENT_DICT=CONTENT_DICT, error=e)
 
 
-create_routes(app)
 
-# if __name__ == "__main__":
-# 	create_routes(app)
-# 	app.debug = True
-# 	app.run()
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    create_routes(app)
+
+    if port == 5000:
+        app.run(host='0.0.0.0', port=port, debug=True)
+
+
+
