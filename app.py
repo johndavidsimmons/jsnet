@@ -84,6 +84,13 @@ def create_routes(app):
         except Exception as e:
             return render_template('500.html', CONTENT_DICT=CONTENT_DICT, error=e)
 
+    @app.route('/cl')
+    def cl():
+        try:
+            return render_template('cl.html')
+        except Exception as e:
+            return render_template('500.html', CONTENT_DICT=CONTENT_DICT, error=e)
+
 create_routes(app)
 
 
