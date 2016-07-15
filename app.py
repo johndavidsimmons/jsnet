@@ -92,7 +92,7 @@ def create_routes(app):
             base_url = 'http://detroit.craigslist.org'
 
             searches = {
-                'marartz':'http://detroit.craigslist.org/search/ele?query=marantz&sort=date&postedToday=1', 
+                'marantz':'http://detroit.craigslist.org/search/ele?query=marantz&sort=date&postedToday=1', 
                 'pioneer': 'http://detroit.craigslist.org/search/ele?postedToday=1&amp;query=pioneer%20receiver&amp;sort=date',
                 'minidisc': 'http://detroit.craigslist.org/search/okl/ele?query=minidisc&sort=date&postedToday=1',
                 'reel to reel': 'http://detroit.craigslist.org/search/ele?query=reel+to+reel&sort=date&postedToday=1'
@@ -112,7 +112,7 @@ def create_routes(app):
                 results = page[0].findAll("p", { "class" : "row" })
                 if results:
                     for listing in results:
-                        if not listing.find('a').get('href').startswith('//annarbor'):
+                        if not listing.find('a').get('href').startswith('//annarbor') and not listing.find('a').get('href').startswith('//toledo'):
                             link = base_url + listing.find('a').get('href')
                             try:
                                 price = listing.find("span", { "class" : "price" }).text
