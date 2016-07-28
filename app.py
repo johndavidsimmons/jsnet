@@ -1,11 +1,15 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request, flash, redirect
 from content import Content
 from requests import get
 import json
 import os
 import datetime
+import MySQLdb
+from connection import SecretKey
+
 
 app = Flask(__name__)
+app.secret_key = SecretKey()
 
 CONTENT_DICT = Content()
 
@@ -59,31 +63,70 @@ def create_routes(app):
         except Exception as e:
             return render_template('500.html', CONTENT_DICT=CONTENT_DICT, error=e)
 
-    @app.route('/records')
+    @app.route('/records', methods=['GET', 'POST'])
     def records():
         try:
-            # records = list(json.loads(get('https://sheetsu.com/apis/v1.0/c8f9d5b7').text))
-            # seveninches = [record for record in records if record['Size'] == '7']
-            # teninches = [record for record in records if record['Size'] == '10']
-            # twelveinches = [record for record in records if record['Size'] == '12']
-
-            import csv
+            
+            from connection import Credentials, AddRecordPassword
             from collections import OrderedDict
-            f = open('records.csv')
-            reader = csv.reader(f)
-            data = list(reader)
+            from form import AddRecord
+            newest = None
 
-            r = {
-                'a':[lst for lst in data if lst[-1] == '7'],
-                'b':[lst for lst in data if lst[-1] == '10'],
-                'c':[lst for lst in data if lst[-1] == '12']
-            }
+            AddRecord = AddRecord(request.form)
+            CRED = Credentials()
+            AddRecordPassword = AddRecordPassword()
+            
+            db = MySQLdb.connect(host=CRED['host'],    # your host, usually localhost
+                                 user=CRED['username'],         # your username
+                                 passwd=CRED['password'],  # your password
+                                 db=CRED['db'])        # name of the data base
 
-            records = OrderedDict(sorted(r.items()))
+            cur = db.cursor()
 
-            return render_template('records.html', CONTENT_DICT=CONTENT_DICT, records=records)
+            if request.method == 'POST' and AddRecord.validate():
+                if AddRecord.password.data == AddRecordPassword:
+                    post_artist = AddRecord.artist.data
+                    post_title = AddRecord.title.data
+                    post_color = AddRecord.color.data
+                    post_year = AddRecord.year.data
+                    post_notes = AddRecord.notes.data
+                    post_size = AddRecord.size.data
+
+               
+                    cur.execute("INSERT INTO records_database (artist, title, color, year, notes, size) VALUES (%s, %s, %s, %s, %s, %s)", (post_artist, post_title, post_color, post_year, post_notes, post_size))
+                    db.commit()
+                    
+                    cur.execute("SELECT * FROM records_database ORDER BY ID DESC LIMIT 1;")
+
+
+                    flash('<p><i>+ {} - {}</i></p>'.format(post_artist, post_title))
+                    return redirect(url_for('records'))
+                    
+                elif AddRecord.password.data != AddRecordPassword:
+                    flash('<p><i>Bad Password</i></p>')
+                    return redirect(url_for('records'))
+
+            
+                else:
+                    flash('<p><i>Something went wrong</i></p>')
+                    return redirect(url_for('records'))
+            
+
+            cur.execute("SELECT * FROM records_database ORDER BY size, artist, year")
+            data_list = [row for row in cur.fetchall()]
+            records = {
+                        7: [row for row in data_list if int(row[7]) == 7],
+                        10: [row for row in data_list if int(row[7]) == 10],
+                        12: [row for row in data_list if int(row[7]) == 12]
+                    }
+            db.close()        
+         
+
+
+            return render_template('records.html', CONTENT_DICT=CONTENT_DICT, records=OrderedDict(sorted(records.items())), AddRecord=AddRecord )
         except Exception as e:
-            return render_template('500.html', CONTENT_DICT=CONTENT_DICT, error=e)
+            return str(e)
+            # return render_template('500.html', CONTENT_DICT=CONTENT_DICT, error=e)
 
     @app.route('/cl')
     def cl():

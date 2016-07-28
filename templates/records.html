@@ -5,12 +5,55 @@
 <div class="row">
 	<div class="col-sm-8 col-sm-offset-2">
 		<h1 class="push-sm">Records</h1>
-		
+		{% with messages = get_flashed_messages() %}
+		  {% if messages %}
+		    {% for message in messages %}
+		      {{ message|safe }}
+		    {% endfor %}
+		  {% endif %}
+		{% endwith %}
+		<div id="plus"><p>+</p></div>
+	 	<div id="addform">
+		 	{% from "_renderfield.html" import render_field %}
+			<form method='POST' action="/records" class=''>
+						<dl>
+							{{ AddRecord.csrf_token }}
+							{{ render_field(AddRecord.artist) }}
+						</dl>
+						
+						<dl>
+							{{ render_field(AddRecord.title) }}
+						</dl>
+						
+						<dl>
+							{{ render_field(AddRecord.color) }}
+						</dl>
+
+						<dl>
+							{{ render_field(AddRecord.year) }}
+						</dl>
+
+						<dl>
+							{{ render_field(AddRecord.size) }}
+						</dl>
+
+						<dl>
+							{{ render_field(AddRecord.password) }}
+						</dl>
+
+						<dl>
+							{{ render_field(AddRecord.notes) }}
+						</dl>
+						<button class="btn" type="submit">Add Record</button>
+					</form>
+		</div>		
+
+	 	<!-- Tables -->
 		{% for key, value in records.items() %}
-		<table>
+		<table id="{{ key }}">
 			<thead>
 				<tr>
-					<th class="size">{{ value[0][-1] }} Inch</th>
+					<th class="size">{{ key }} Inch</th>
 					<th></th>
 					<th></th>
 					<th></th>
@@ -20,11 +63,12 @@
 			<tbody>
 			{%  for lst in value %}
 				<tr>
-					<td>{{ lst[0] }}</td>
-					<td>{{ lst[1] }}</td>
+
+					<td id="{{ lst[0] }}">{{ lst[1] }}</td>
 					<td>{{ lst[2] }}</td>
 					<td>{{ lst[3] }}</td>
-					<td class="notes">{{ lst[4] }}</td>
+					<td>{{ lst[4] }}</td>
+					<td class="notes">{{ lst[5] }}</td>
 				</tr>
 			{% endfor %}
 			</tbody>
@@ -33,6 +77,38 @@
 
 	</div>
 </div>
+
+
+
+
+<script>
+
+	if ( $('#submit_error').length > 0 ) {
+		$("#plus").addClass('rotate');
+	} else {
+		$("#addform").hide();
+	}
+	
+
+	$("#plus").on('click', function(){
+		$("#addform").toggle();
+
+		if ( $('#addform').attr('style') != 'display: none;' ) {
+			$("#plus").addClass('rotate');
+		} else {
+			$("#plus").removeClass('rotate');
+		}
+
+
+	});
+</script>
+
+
+
+
+
+
+
 
 
 {% endblock %}

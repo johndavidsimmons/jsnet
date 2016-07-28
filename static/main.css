@@ -251,7 +251,62 @@ table {
 	margin-bottom: 2em;
 }
 
+dd > input,
+dd > select {
+	margin: 0 1em 1em 0;
+}
 
+dd > input {
+	border-top: none;
+	border-left: none;
+	border-right: none; 
+	border-bottom: 1px solid gray;
+	outline: none;
+}
+
+dl {
+	float: left;
+}
+
+#addform > form > .btn {
+	background-color: transparent;
+	border: 1px solid black;
+	padding: 1em;
+}
+
+#addform > form > .btn:hover {
+	background-color: black;
+	color: white;
+}
+
+select {
+	background-color:transparent;
+	border: 1px solid black;
+	outline: none;
+}
+
+#plus {
+	
+	float: right;
+	position: relative;
+	display: inline-block;
+	color: transparent;
+	-webkit-text-stroke: 1px black;
+	font-size: 2em;
+	font-weight: bold;
+	transition: transform 0.35s ease-out;
+}
+
+.rotate {
+  transform-origin: 50% 50%;
+	transform: rotate(45deg);
+}
+
+
+#plus:hover {
+	cursor: pointer;
+	color: black;
+}
 
 /*Hide bio image on mobile*/
 
