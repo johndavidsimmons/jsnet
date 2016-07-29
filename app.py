@@ -45,7 +45,8 @@ def create_routes(app):
         try:
             return render_template('resume.html', CONTENT_DICT=CONTENT_DICT)
         except Exception as e:
-            return render_template('500.html', CONTENT_DICT=CONTENT_DICT, error=e)
+            return str(e)
+            # return render_template('500.html', CONTENT_DICT=CONTENT_DICT, error=e)
 
     @app.route('/projects')
     def projects():
@@ -125,8 +126,8 @@ def create_routes(app):
 
             return render_template('records.html', CONTENT_DICT=CONTENT_DICT, records=OrderedDict(sorted(records.items())), AddRecord=AddRecord )
         except Exception as e:
-            return str(e)
-            # return render_template('500.html', CONTENT_DICT=CONTENT_DICT, error=e)
+            # return str(e)
+            return render_template('500.html', CONTENT_DICT=CONTENT_DICT, error=e)
 
     @app.route('/cl')
     def cl():

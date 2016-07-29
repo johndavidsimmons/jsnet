@@ -3,4 +3,4 @@
 *.idea
 scratch.txt
 /sql
-connection.py
+.env
