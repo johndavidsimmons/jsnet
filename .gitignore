@@ -2,5 +2,6 @@
 *.DS_Store
 *.idea
 scratch.txt
-/sql
 .env
+venv/
+sql/
