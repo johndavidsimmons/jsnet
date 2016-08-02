@@ -1,20 +1,26 @@
-from flask import Flask, render_template, url_for, request, flash, redirect
-from content import Content
-from requests import get
+# System packages
 import json
 import os
 import datetime
+
+# Installed Packages
+from flask import Flask, render_template, url_for, request, flash, redirect
+from content import Content
+from requests import get
 import MySQLdb
+
+# My packages
 from connection import SecretKey
 
 
 app = Flask(__name__)
 app.secret_key = SecretKey()
 
+
 CONTENT_DICT = Content()
 
 
-# Error handlers
+# Error Handlers
 @app.errorhandler(404)
 def page_not_found(error):
     try:
@@ -30,14 +36,14 @@ def error_500(error):
     except Exception as e:
         return str(e)
 
-
+# Application Routes
 def create_routes(app):
     @app.route("/")
     def index():
         try:
-            return render_template('index.html', CONTENT_DICT=CONTENT_DICT)
+            return redirect(url_for('blog'))
+            # return render_template('index.html', CONTENT_DICT=CONTENT_DICT)
         except Exception as e:
-            # return e
             return render_template('500.html', CONTENT_DICT=CONTENT_DICT, error=e)
 
     @app.route('/resume')
@@ -45,8 +51,7 @@ def create_routes(app):
         try:
             return render_template('resume.html', CONTENT_DICT=CONTENT_DICT)
         except Exception as e:
-            return str(e)
-            # return render_template('500.html', CONTENT_DICT=CONTENT_DICT, error=e)
+            return render_template('500.html', CONTENT_DICT=CONTENT_DICT, error=e)
 
     @app.route('/projects')
     def projects():
@@ -71,16 +76,15 @@ def create_routes(app):
             from connection import Credentials, AddRecordPassword
             from collections import OrderedDict
             from form import AddRecord
-            newest = None
 
             AddRecord = AddRecord(request.form)
             CRED = Credentials()
             AddRecordPassword = AddRecordPassword()
             
-            db = MySQLdb.connect(host=CRED['host'],    # your host, usually localhost
-                                 user=CRED['username'],         # your username
-                                 passwd=CRED['password'],  # your password
-                                 db=CRED['db'])        # name of the data base
+            db = MySQLdb.connect(host=CRED['host'],    
+                                 user=CRED['username'],
+                                 passwd=CRED['password'],
+                                 db=CRED['db'])
 
             cur = db.cursor()
 
@@ -126,7 +130,6 @@ def create_routes(app):
 
             return render_template('records.html', CONTENT_DICT=CONTENT_DICT, records=OrderedDict(sorted(records.items())), AddRecord=AddRecord )
         except Exception as e:
-            # return str(e)
             return render_template('500.html', CONTENT_DICT=CONTENT_DICT, error=e)
 
     @app.route('/cl')
@@ -168,6 +171,47 @@ def create_routes(app):
         except Exception as e:
             return render_template('500.html', CONTENT_DICT=CONTENT_DICT, error=e)
 
+    @app.route('/blog')
+    @app.route('/blog/<int:page>')
+    @app.route('/blog/<string:posttitle>')
+    def blog(page=1, posttitle=None):
+        try:
+
+            from images import image_dict
+            from connection import Credentials
+
+            CRED = Credentials()
+            IMAGES = image_dict()
+
+            db = MySQLdb.connect(host=CRED['host'],    
+                                 user=CRED['username'],
+                                 passwd=CRED['password'],
+                                 db=CRED['db'])
+
+            cur = db.cursor()
+            cur.execute("SELECT * FROM blog ORDER BY ID DESC;")
+            posts = [row for row in cur.fetchall()]
+            num_of_posts = len(posts)
+            num_of_pages = ((num_of_posts - 1) / 2) + 1
+            page_plus_1 = page + 1
+            ptt = (page * 2) - 2
+
+            db.close()
+            return render_template('blog.html', 
+                CONTENT_DICT=CONTENT_DICT, 
+                page=page, 
+                posts = posts, 
+                num_of_posts=num_of_posts,
+                num_of_pages=num_of_pages,
+                page_plus_1=page_plus_1,
+                ptt = ptt,
+                IMAGES=IMAGES,
+                posttitle=posttitle)
+        except Exception as e:
+            return str(e)
+            # return render_template('500.html', CONTENT_DICT=CONTENT_DICT, error=e)
+
+                
 create_routes(app)
 
 

@@ -10,6 +10,10 @@
 	color: #000;
 	font-weight: bold;
 }
+
+.navbar-default .navbar-nav>li>a:hover {
+	color: #aaa;
+}
 .navbar-default .navbar-nav>li>a.selected {
 	border-bottom: 2px solid #000;
 }
@@ -30,16 +34,8 @@ footer {
 }
 
 /****************************
-		Home
+		Blog - sidebar
 ****************************/
-.par {
-	font-size: 1.1em;
-	line-height: 1.65em;
-}
-
-.sammy {
-	cursor: pointer;
-}
 
 .flip-container {
   -webkit-perspective: 1000;
@@ -49,8 +45,9 @@ footer {
 }
 
 .flip-container, .front, .back {
-	width: 274px;
-	height: 374px;
+	width: 120px;
+		
+	/*height: 274px;*/
 }
 
 .flipper {
@@ -94,7 +91,22 @@ footer {
 	transform: rotateY(180deg);
 }
 
+.reverse {
+	-webkit-transform: rotateY(180deg);
+	-moz-transform': rotateY(180deg);
+	transform': rotateY(180deg);
+}
 
+.social {
+	margin-top: 12em;
+	margin-left: 2.25em;
+}
+
+.social li {
+	list-style-type: none;
+	display: inline;
+
+}
 
 /****************************
 		Resume
@@ -137,9 +149,17 @@ footer {
 	-webkit-transform: scale(1.02);
 }
 
-.caption {
-	font-weight: bold;
-	margin-top: 10px;
+
+.old_arrow {
+	float: left;
+}
+
+.new_arrow {
+	float: right;
+}
+
+.post-title a {
+	color: black;
 }
 
 /****************************
@@ -315,9 +335,8 @@ select {
 		display: none;
 	}
 
-	.sammy {
-		color: #000;
-		cursor: pointer;
+	.social {
+		display: none;
 	}
 
 	.navbar-default .navbar-nav>li>a.selected {

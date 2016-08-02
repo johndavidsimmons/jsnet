@@ -6,9 +6,8 @@ def Content():
         'name': 'John Simmons',
         'year': datetime.datetime.now().strftime('%Y'),
         'Navigation': [
-            ['Home', "/", "John Simmons"],
+            ['Blog', '/blog', 'Blog'],
             ['Resume', "/resume", 'Resume'],
-            ['Projects', '/projects', 'Projects'],
             ['Records', '/records', 'Records'],
             ['Maker Challenge', "/makerchallenge", "Maker Challenge"]
         ],
@@ -42,39 +41,36 @@ def Content():
         'Social': {
             "linkedin": {
                 'link': 'https://www.linkedin.com/in/johndavidsimmons',
-                'fa4x': 'fa fa-linkedin-square fa-4x'
+                'fa': 'fa fa-linkedin-square fa-2x'
             },
             'github': {
                 'link': 'https://github.com/johndavidsimmons',
-                'fa4x': 'fa fa-github-square fa-4x',
+                'fa': 'fa fa-github-square fa-2x',
                 'fa1x': 'fa fa-github-square'
-            },
-            'medium': {
-                'link': 'https://medium.com/@johndavidsimmons',
-                'fa4x': 'fa fa-medium fa-4x'
             }
         },
         'Maker': {
             'ideas': {
                 'done': [
                     'Personal website with resume, projects, bio, etc (You are here!)',
-                    '<a href="/projects/pimusicbox/">Pi powered Spotify music box</a>',
+                    '<a href="/blog/Pi-Music-Box">Pi powered Spotify music box</a>',
                     'Twitter Budgeting App (Hackathon Project)',
                     '<a href="https://medium.com/@johndavidsimmons/email-sign-up-widget-in-qualtrics-407c384e5ad3#.79rw5rtu8">A Medium post</a>',
-                    '<a href="/projects/magicmirror">Pi Powered Magic Mirror</a>',
+                    '<a href="/blog/Magic-Mirror">Pi Powered Magic Mirror</a>',
                     'A stair ramp for Sammy',
-                    'Pi powered FM Radio broadcaster'
+                    'Pi powered FM Radio broadcaster',
+                    '<a href="/records">Record collection section</a>',
+                    '<a href="/cl">Craigslist Scraper</a>'
                 ],
                 'in-progress': [
-                    'Record collecting web app'
+                    'Patterned stairwell'
                 ],
                 'upcoming': [
                     '<a href="https://amzn.com/w/22OXWTGT6FKCV">Model airplane, car, or helicopter</a>',
                     'A magnetic wall mounted bottle opener',
                     'Socket wrench organizing peg board',
-                    'Craigslist Scraper',
-                    'A self portrait',
-                    'Patterned stairwell'
+                    'A self portrait'
+                    
                 ]
             },
             'desc': 'Project ideas for the <a href="http://megamaker.co/challenge/">2016 Maker Challenge</a>'
