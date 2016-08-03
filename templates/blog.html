@@ -2,32 +2,50 @@
 
 {% block content %}
 
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      {{ message|safe }}
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+
+{% if session['logged_in'] == True %}
+	<p style="color:green;"><strong>Logged in</strong></p>	
+{% endif %}
+
 <div class="row">
 	<div class="col-sm-3">
-		<div class="flip-container center-block">
-			<div class="flipper">
-				<img src="{{ CONTENT_DICT['Images']['portrait'] }}" alt="John Simmons portrait" class="img-rounded front">
-				<img src="{{ CONTENT_DICT['Images']['sammy'] }}" alt="Sammy" class="img-rounded back">
-			</div>
-		</div>
-		<div class="social center-block">
-			<ul>
-				<li><a href="{{ CONTENT_DICT['Social']['linkedin']['link'] }}"><i class="{{ CONTENT_DICT['Social']['linkedin']['fa'] }}" aria-hidden="true"></i></a></li>
-				<li><a href="{{ CONTENT_DICT['Social']['github']['link'] }}"><i class="{{ CONTENT_DICT['Social']['github']['fa'] }}" aria-hidden="true"></i></a></li>
-			</ul>
-
-		</div>
-	</div>
+		{% from "macros/_renderbio.html" import render_bio %}
+			{{ render_bio(CONTENT_DICT) }}
 	<div class="col-sm-6">
 
 		<div class="row">
 			<div class="col-sm-12 push-sm">
-			{% from "_renderpost.html" import render_post %}
+			{% from "macros/_renderpost.html" import render_post %}
 
 
 			<!-- If on an integer page -->
 			{% if posttitle == None %}
 
+
+					<!-- if you are logged in -->
+					{% if session['logged_in'] == True and page == 1 %}
+
+						{% from "macros/_renderfield.html" import render_field %}
+						<div id="addpost">
+							<form method='POST' action="/addpost" class=''>
+								{{ AddPost.csrf_token }}
+								{{ render_field(AddPost.title) }}
+								{{ render_field(AddPost.timestamp) }}
+								{{ render_field(AddPost.content) }}
+								{{ render_field(AddPost.ghlink) }}
+								<button class="btn" type="submit">Add Post</button>
+							</form>	
+						</div>
+					{% endif %}
+						
 				<!-- If you are on the first page -->
 				{% if page == 1 %}
 					{% for post in posts[:page+1] %}
@@ -81,11 +99,13 @@
 
 
 
-{% include "_galleryjs.html" %}
+<script type="text/javascript" src="/static/js/gallery.js"></script>
 <script type="text/javascript">
 	// Sammy picture toggle
 	$('.flipper').on('click', function() {
 		$('.flip-container .flipper').toggleClass('reverse');
 	});
+
+
 </script>
 {% endblock %}

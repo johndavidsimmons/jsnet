@@ -61,7 +61,15 @@
 		{% block content %}
 		{% endblock %}
 		<footer>
-			<small><p class="text-center">{{ CONTENT_DICT['name'] }} &copy; {{ CONTENT_DICT['year'] }}</p></small>
+			<small>
+				<p class="text-center">
+					{% if session["logged_in"] != True %}
+						<a href="/login">{{ CONTENT_DICT['name'] }} &copy; {{ CONTENT_DICT['year'] }}</a>
+					{% else %}
+						<a href="/logout">{{ CONTENT_DICT['name'] }} &copy; {{ CONTENT_DICT['year'] }}</a>
+					{% endif %}
+				</p>
+			</small>
 		</footer>
 	</div>
 </body>

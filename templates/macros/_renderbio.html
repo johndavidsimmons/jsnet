@@ -1,0 +1,16 @@
+{% macro render_bio(CONTENT_DICT) %}
+		<div class="flip-container center-block">
+			<div class="flipper">
+				<img src="{{ CONTENT_DICT['Images']['portrait'] }}" alt="John Simmons portrait" class="img-rounded front">
+				<img src="{{ CONTENT_DICT['Images']['sammy'] }}" alt="Sammy" class="img-rounded back">
+			</div>
+		</div>
+		<div class="social center-block">
+			<ul>
+				<li><a href="{{ CONTENT_DICT['Social']['linkedin']['link'] }}"><i class="{{ CONTENT_DICT['Social']['linkedin']['fa'] }}" aria-hidden="true"></i></a></li>
+				<li><a href="{{ CONTENT_DICT['Social']['github']['link'] }}"><i class="{{ CONTENT_DICT['Social']['github']['fa'] }}" aria-hidden="true"></i></a></li>
+			</ul>
+
+		</div>
+	</div>
+{% endmacro %}

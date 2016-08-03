@@ -33,6 +33,17 @@ footer {
 	padding-top: 4em;
 }
 
+footer small p a {
+	color: black;
+	text-decoration: none;
+	cursor: default;
+}
+
+footer small p a:hover {
+	color: black;
+	text-decoration: none;
+}
+
 /****************************
 		Blog - sidebar
 ****************************/
@@ -45,9 +56,7 @@ footer {
 }
 
 .flip-container, .front, .back {
-	width: 120px;
-		
-	/*height: 274px;*/
+	width: 120px;		
 }
 
 .flipper {
@@ -127,7 +136,7 @@ footer {
 }
 
 /****************************
-		Projects
+		Projects/Blog
 ****************************/
 .project-icon {
 	cursor: pointer;
@@ -160,6 +169,22 @@ footer {
 
 .post-title a {
 	color: black;
+}
+
+#addpost textarea {
+	width: 100%;
+	height: 150px;
+	margin-bottom: 1em;
+	border-radius: 5px;
+	resize: none;
+}
+
+.post img {
+	width: 100%;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	border: 1px solid black;
+	border-radius: 5px;
 }
 
 /****************************
@@ -284,17 +309,21 @@ dd > input {
 	outline: none;
 }
 
-dl {
+#addform dl {
 	float: left;
 }
 
-#addform > form > .btn {
+#addform > form > .btn,
+#addpost > form > .btn,
+#login > form > .btn {
 	background-color: transparent;
 	border: 1px solid black;
 	padding: 1em;
 }
 
-#addform > form > .btn:hover {
+#addform > form > .btn:hover,
+#addpost > form > .btn:hover,
+#login > form > .btn:hover {
 	background-color: black;
 	color: white;
 }

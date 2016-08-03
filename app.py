@@ -2,25 +2,48 @@
 import json
 import os
 import datetime
+import gc
+from functools import wraps
 
 # Installed Packages
-from flask import Flask, render_template, url_for, request, flash, redirect
+from flask import Flask, render_template, url_for, request, flash, redirect, session
 from content import Content
 from requests import get
 import MySQLdb
+from passlib.hash import sha256_crypt
 
 # My packages
-from connection import SecretKey
+from connection import SecretKey, Credentials
 
-
+#*********************
+#      App Setup      *
+#*********************
 app = Flask(__name__)
 app.secret_key = SecretKey()
-
-
+CRED = Credentials()
 CONTENT_DICT = Content()
 
 
-# Error Handlers
+#*********************
+#     Decorators     *
+#*********************
+def login_required(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if 'logged_in' in session:
+            return f(*args, **kwargs)
+
+        else:
+            flash("Login required")
+            return redirect(url_for("index"))
+
+    return wrap
+
+
+#*********************
+#   Error Handlers   *
+#*********************
+
 @app.errorhandler(404)
 def page_not_found(error):
     try:
@@ -36,13 +59,15 @@ def error_500(error):
     except Exception as e:
         return str(e)
 
-# Application Routes
+#*********************
+#     App Routes     *
+#*********************
+
 def create_routes(app):
     @app.route("/")
     def index():
         try:
             return redirect(url_for('blog'))
-            # return render_template('index.html', CONTENT_DICT=CONTENT_DICT)
         except Exception as e:
             return render_template('500.html', CONTENT_DICT=CONTENT_DICT, error=e)
 
@@ -50,15 +75,6 @@ def create_routes(app):
     def resume():
         try:
             return render_template('resume.html', CONTENT_DICT=CONTENT_DICT)
-        except Exception as e:
-            return render_template('500.html', CONTENT_DICT=CONTENT_DICT, error=e)
-
-    @app.route('/projects')
-    def projects():
-        try:
-            from blog import Projects
-            projects_dict = Projects()
-            return render_template('projects.html', CONTENT_DICT=CONTENT_DICT, projects_dict=projects_dict)
         except Exception as e:
             return render_template('500.html', CONTENT_DICT=CONTENT_DICT, error=e)
 
@@ -71,22 +87,21 @@ def create_routes(app):
 
     @app.route('/records', methods=['GET', 'POST'])
     def records():
+        db = MySQLdb.connect(host=CRED['host'],    
+                             user=CRED['username'],
+                             passwd=CRED['password'],
+                             db=CRED['db'])
+
+        cur = db.cursor()
         try:
             
-            from connection import Credentials, AddRecordPassword
+            from connection import AddRecordPassword
             from collections import OrderedDict
             from form import AddRecord
 
             AddRecord = AddRecord(request.form)
-            CRED = Credentials()
             AddRecordPassword = AddRecordPassword()
             
-            db = MySQLdb.connect(host=CRED['host'],    
-                                 user=CRED['username'],
-                                 passwd=CRED['password'],
-                                 db=CRED['db'])
-
-            cur = db.cursor()
 
             if request.method == 'POST' and AddRecord.validate():
                 if AddRecord.password.data == AddRecordPassword:
@@ -97,12 +112,12 @@ def create_routes(app):
                     post_notes = AddRecord.notes.data
                     post_size = AddRecord.size.data
 
-               
+
+
+                    
                     cur.execute("INSERT INTO records_database (artist, title, color, year, notes, size) VALUES (%s, %s, %s, %s, %s, %s)", (post_artist, post_title, post_color, post_year, post_notes, post_size))
                     db.commit()
-                    
-                    cur.execute("SELECT * FROM records_database ORDER BY ID DESC LIMIT 1;")
-
+                    db.close()
 
                     flash('<p><i>+ {} - {}</i></p>'.format(post_artist, post_title))
                     return redirect(url_for('records'))
@@ -130,7 +145,8 @@ def create_routes(app):
 
             return render_template('records.html', CONTENT_DICT=CONTENT_DICT, records=OrderedDict(sorted(records.items())), AddRecord=AddRecord )
         except Exception as e:
-            return render_template('500.html', CONTENT_DICT=CONTENT_DICT, error=e)
+            return str(e)
+            # return render_template('500.html', CONTENT_DICT=CONTENT_DICT, error=e)
 
     @app.route('/cl')
     def cl():
@@ -171,24 +187,25 @@ def create_routes(app):
         except Exception as e:
             return render_template('500.html', CONTENT_DICT=CONTENT_DICT, error=e)
 
-    @app.route('/blog')
+    @app.route('/blog', methods=['GET', 'POST'])
     @app.route('/blog/<int:page>')
     @app.route('/blog/<string:posttitle>')
     def blog(page=1, posttitle=None):
+        
+        db = MySQLdb.connect(host=CRED['host'],    
+                             user=CRED['username'],
+                             passwd=CRED['password'],
+                             db=CRED['db'])
+
+        cur = db.cursor()
         try:
 
             from images import image_dict
-            from connection import Credentials
-
-            CRED = Credentials()
+            from form import AddPost
+            
             IMAGES = image_dict()
+            AddPost = AddPost(request.form)
 
-            db = MySQLdb.connect(host=CRED['host'],    
-                                 user=CRED['username'],
-                                 passwd=CRED['password'],
-                                 db=CRED['db'])
-
-            cur = db.cursor()
             cur.execute("SELECT * FROM blog ORDER BY ID DESC;")
             posts = [row for row in cur.fetchall()]
             num_of_posts = len(posts)
@@ -206,12 +223,129 @@ def create_routes(app):
                 page_plus_1=page_plus_1,
                 ptt = ptt,
                 IMAGES=IMAGES,
-                posttitle=posttitle)
+                posttitle=posttitle,
+                AddPost=AddPost)
         except Exception as e:
             return str(e)
             # return render_template('500.html', CONTENT_DICT=CONTENT_DICT, error=e)
 
-                
+    @app.route('/login', methods=['GET', 'POST'])
+    def login():
+        db = MySQLdb.connect(host=CRED['host'],    
+                             user=CRED['username'],
+                             passwd=CRED['password'],
+                             db=CRED['db'])
+
+        cur = db.cursor()
+
+        try:
+            from form import LoginForm
+            LoginForm = LoginForm(request.form)
+
+
+            if request.method == 'POST':
+
+                cur.execute("SELECT * FROM users WHERE username=%s", (LoginForm.username.data,))
+                row = cur.fetchone()
+
+                # if the username exists and password verifies
+                if row and sha256_crypt.verify(LoginForm.password.data, row[2]):
+                    session["logged_in"] = True
+                    session["username"] = request.form["username"]
+                    return redirect(url_for('index'))
+                else:
+                    flash('<p>Bad Credentials</p>')
+                    return redirect(url_for('login'))
+
+            return render_template('login.html', CONTENT_DICT=CONTENT_DICT, LoginForm=LoginForm)
+        except Exception as e:
+            return render_template('500.html', CONTENT_DICT=CONTENT_DICT, error=e)
+
+    @app.route('/logout')
+    @login_required
+    def logout():
+        try:
+            session.clear()
+            flash('You have logged out')
+            gc.collect()
+            return redirect(url_for('blog'))
+        except Exception as e:
+            flash(e)
+            return redirect(url_for('login'))
+
+    @app.route('/addpost', methods=['GET', 'POST'])
+    @login_required
+    def addpost():
+        db = MySQLdb.connect(host=CRED['host'],    
+                             user=CRED['username'],
+                             passwd=CRED['password'],
+                             db=CRED['db'])
+
+        cur = db.cursor()
+
+        try:
+            from form import AddPost
+            AddPost = AddPost(request.form)
+
+            if request.method =='POST' and session["logged_in"] == True:
+                cur.execute("INSERT INTO blog (title, timestamp, content, ghlink) VALUES (%s, %s, %s, %s)", (AddPost.title.data, AddPost.timestamp.data, AddPost.content.data, AddPost.ghlink.data))
+                db.commit()
+                db.close()
+                flash('<p>Title: {}, Timestamp: {}</p>'.format(AddPost.title.data, AddPost.timestamp.data))
+                return redirect(url_for('blog'))
+        except Exception as e:
+            flash("Error: {}".format(e))
+            return redirect(url_for('blog'))        
+
+    @app.route('/deletepost/<int:id_num>', methods=['GET', 'POST'])
+    @login_required
+    def deletepost(id_num=None):
+        db = MySQLdb.connect(host=CRED['host'],    
+                             user=CRED['username'],
+                             passwd=CRED['password'],
+                             db=CRED['db'])
+
+        cur = db.cursor()
+
+        try:
+            cur.execute("DELETE FROM blog WHERE ID = %s", (id_num,)) 
+            db.commit()
+            db.close()
+            
+            flash('Deleted post {}'.format(id_num))
+            return redirect(url_for('blog'))
+        except Exception as e:
+            return str(e)
+
+
+    @app.route('/deleterecord/<int:id_num>', methods=['GET', 'POST'])
+    @login_required
+    def deleterecord(id_num=None):
+        db = MySQLdb.connect(host=CRED['host'],    
+                             user=CRED['username'],
+                             passwd=CRED['password'],
+                             db=CRED['db'])
+
+        cur = db.cursor()
+
+        try:
+            # Get deleted record info for flash
+            cur.execute("SELECT * FROM records_database WHERE ID = %s LIMIT 1", (id_num,))
+            row = cur.fetchone()
+            deleted_artist, deleted_title = row[1], row[2]
+
+            # Deleting
+            cur.execute("DELETE FROM records_database WHERE ID = %s", (id_num,)) 
+            db.commit()
+            db.close()
+            
+            
+            flash('<p><i>- {} - {}</i></p>'.format(deleted_artist, deleted_title))
+            return redirect(url_for('records'))
+        except Exception as e:
+            flash('Something went wrong deleting record')
+            return redirect(url_for('records'))
+
 create_routes(app)
 
 
