@@ -145,8 +145,7 @@ def create_routes(app):
 
             return render_template('records.html', CONTENT_DICT=CONTENT_DICT, records=OrderedDict(sorted(records.items())), AddRecord=AddRecord )
         except Exception as e:
-            return str(e)
-            # return render_template('500.html', CONTENT_DICT=CONTENT_DICT, error=e)
+            return render_template('500.html', CONTENT_DICT=CONTENT_DICT, error=e)
 
     @app.route('/cl')
     def cl():
@@ -226,8 +225,7 @@ def create_routes(app):
                 posttitle=posttitle,
                 AddPost=AddPost)
         except Exception as e:
-            return str(e)
-            # return render_template('500.html', CONTENT_DICT=CONTENT_DICT, error=e)
+            return render_template('500.html', CONTENT_DICT=CONTENT_DICT, error=e)
 
     @app.route('/login', methods=['GET', 'POST'])
     def login():
