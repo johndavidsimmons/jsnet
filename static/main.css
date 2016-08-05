@@ -187,6 +187,13 @@ footer small p a:hover {
 	border-radius: 5px;
 }
 
+#preview {
+	float: right;
+	cursor: pointer;
+}
+
+
+
 /****************************
 		Maker
 ****************************/

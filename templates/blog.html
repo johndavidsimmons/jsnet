@@ -35,10 +35,12 @@
 
 						{% from "macros/_renderfield.html" import render_field %}
 						<div id="addpost">
+
 							<form method='POST' action="/addpost" class=''>
 								{{ AddPost.csrf_token }}
 								{{ render_field(AddPost.title) }}
 								{{ render_field(AddPost.timestamp) }}
+								<i id="preview" class="fa fa-eye" aria-hidden="true"></i>
 								{{ render_field(AddPost.content) }}
 								{{ render_field(AddPost.ghlink) }}
 								<button class="btn" type="submit">Add Post</button>
@@ -101,11 +103,31 @@
 
 <script type="text/javascript" src="/static/js/gallery.js"></script>
 <script type="text/javascript">
+	
 	// Sammy picture toggle
 	$('.flipper').on('click', function() {
 		$('.flip-container .flipper').toggleClass('reverse');
 	});
 
+	// Preview button
+	$('#preview').on('click', function(){
+		
+		if ( $('#preview-post').length == 1 ) {
+			$('#preview-post').remove();
+		} else {
+			var title_value = $("#title").val();
+			var timestamp_value = $("#timestamp").val();
+			var body_value = $("#content").val();
+			var ghlink_value = $("#ghlink").val();
+
+			var str = '<div id="preview-post" class="post"><h2 class="post-title"><a href="#">' + title_value + '</a></h2>';
+			str += '<h4 class="push-sm"><a href="#" target="_blank"><i class="fa fa-github-square"></i></a><small> | ' + ghlink_value + '</small>';
+			str += '<h4><small>' + timestamp_value + '</small></h4>';
+			str += '<p>' + body_value + '</p><hr></div>';
+
+			$("#addpost").after(str);
+		}
+	});
 
 </script>
 {% endblock %}
