@@ -316,8 +316,16 @@ dd > input {
 	outline: none;
 }
 
+#addform {
+	display: none;
+}
+
 #addform dl {
 	float: left;
+}
+
+label[for="mail"] {
+	padding-right: 1em;
 }
 
 #addform > form > .btn,
@@ -362,6 +370,24 @@ select {
 #plus:hover {
 	cursor: pointer;
 	color: black;
+}
+#letter:hover {
+	cursor: pointer;
+	color: #aaa;
+}
+
+.mail {
+	display: none;
+}
+
+#letter i {
+	float: left;
+	padding-top: 1em;
+}
+
+.outline {
+	color: transparent;
+	-webkit-text-stroke: 1px black;
 }
 
 /*Hide bio image on mobile*/

@@ -111,11 +111,12 @@ def create_routes(app):
                     post_year = AddRecord.year.data
                     post_notes = AddRecord.notes.data
                     post_size = AddRecord.size.data
+                    post_mail = 1 if AddRecord.mail.data else 0
 
 
 
                     
-                    cur.execute("INSERT INTO records_database (artist, title, color, year, notes, size) VALUES (%s, %s, %s, %s, %s, %s)", (post_artist, post_title, post_color, post_year, post_notes, post_size))
+                    cur.execute("INSERT INTO records_database (artist, title, color, year, notes, size, mail) VALUES (%s, %s, %s, %s, %s, %s, %s)", (post_artist, post_title, post_color, post_year, post_notes, post_size, post_mail))
                     db.commit()
                     db.close()
 
@@ -135,17 +136,27 @@ def create_routes(app):
             cur.execute("SELECT * FROM records_database ORDER BY size, artist, year")
             data_list = [row for row in cur.fetchall()]
             records = {
-                        7: [row for row in data_list if int(row[7]) == 7],
-                        10: [row for row in data_list if int(row[7]) == 10],
-                        12: [row for row in data_list if int(row[7]) == 12]
+                        7: [row for row in data_list if int(row[7]) == 7 and not row[9]],
+                        10: [row for row in data_list if int(row[7]) == 10 and not row[9]],
+                        12: [row for row in data_list if int(row[7]) == 12 and not row[9]]
+                    }
+
+            mail = {
+                        7: [row for row in data_list if int(row[7]) == 7 and row[9]],
+                        10: [row for row in data_list if int(row[7]) == 10 and row[9]],
+                        12: [row for row in data_list if int(row[7]) == 12 and row[9]]
                     }
             db.close()        
          
 
 
-            return render_template('records.html', CONTENT_DICT=CONTENT_DICT, records=OrderedDict(sorted(records.items())), AddRecord=AddRecord )
+            return render_template('records.html', CONTENT_DICT=CONTENT_DICT, 
+                records=OrderedDict(sorted(records.items())), 
+                mail=OrderedDict(sorted(mail.items())), 
+                AddRecord=AddRecord )
         except Exception as e:
-            return render_template('500.html', CONTENT_DICT=CONTENT_DICT, error=e)
+            # return render_template('500.html', CONTENT_DICT=CONTENT_DICT, error=e)
+            return str(e)
 
     @app.route('/cl')
     def cl():
@@ -343,6 +354,36 @@ def create_routes(app):
         except Exception as e:
             flash('Something went wrong deleting record')
             return redirect(url_for('records'))
+
+
+    @app.route('/mail/<int:id_num>', methods=['GET', 'POST'])
+    @login_required
+    def mail(id_num=None):
+        db = MySQLdb.connect(host=CRED['host'],    
+                             user=CRED['username'],
+                             passwd=CRED['password'],
+                             db=CRED['db'])
+
+        cur = db.cursor()
+
+        try:
+
+            # Get deleted record info for flash
+            cur.execute("SELECT * FROM records_database WHERE ID = %s LIMIT 1", (id_num,))
+            row = cur.fetchone()
+            artist, title = row[1], row[2]
+
+
+            cur.execute("UPDATE records_database set mail=0 where ID = %s;", (id_num,))
+
+            db.commit()
+            db.close()
+            flash('<p><i>Arrived {} - {}</i></p>'.format(artist, title))
+            return redirect(url_for('records'))
+        except Exception as e:
+            return str(e)
+            # flash('Something went wrong updating record')
+            # return redirect(url_for('records'))
 
 create_routes(app)
 

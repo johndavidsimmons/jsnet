@@ -1,5 +1,5 @@
 from flask_wtf import Form
-from wtforms import validators, StringField, IntegerField, SelectField, PasswordField, TextAreaField
+from wtforms import validators, StringField, IntegerField, SelectField, PasswordField, TextAreaField, BooleanField
 
 class AddRecord(Form):
 	artist = StringField('Artist',
@@ -25,6 +25,8 @@ class AddRecord(Form):
 		)
 
 	size = SelectField('Size', choices=[('7','7'), ('10','10'), ('12','12'), ('99', 'CS'), ('100', 'CD')])
+
+	mail = BooleanField()
 
 
 class LoginForm(Form):
