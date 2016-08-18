@@ -179,7 +179,7 @@ footer small p a:hover {
 	resize: none;
 }
 
-.post img {
+.post img:not(.project-img) {
 	width: 100%;
 	margin-top: 1em;
 	margin-bottom: 1em;
