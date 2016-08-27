@@ -185,17 +185,21 @@ def create_routes(app):
                 results = page[0].findAll("p", { "class" : "row" })
                 if results:
                     for listing in results:
-                        if not listing.find('a').get('href').startswith('//annarbor') and not listing.find('a').get('href').startswith('//toledo'):
+                        if not '//annarbor' in listing.find('a').get('href') and not '//toledo' in listing.find('a').get('href'):
                             link = base_url + listing.find('a').get('href')
                             try:
                                 price = listing.find("span", { "class" : "price" }).text
                             except:
                                 price = 'No Price'
-                            title = listing.find("span", { "id" : "titletextonly" }).text
+                            try:
+                                title = listing.find("a", { "class" : "hdrlnk" }).text
+                            except:
+                                title = "No Title"
                             html_string += '<p><strong>{3}</strong>: <a href="{0}">{1} - {2}</a></p>'.format(link, title, price, page[1])
             return render_template('cl.html', html_string=html_string)
         except Exception as e:
-            return render_template('500.html', CONTENT_DICT=CONTENT_DICT, error=e)
+            return str(e)
+            # return render_template('500.html', CONTENT_DICT=CONTENT_DICT, error=e)
 
     @app.route('/blog', methods=['GET', 'POST'])
     @app.route('/blog/<int:page>')
