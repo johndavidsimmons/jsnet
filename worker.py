@@ -3,7 +3,7 @@ import requests
 import json
 import datetime
 
-r = requests.get('https://www.reddit.com/r/news/hot.json?limit=4', headers = {'User-agent': 'john magic mirror'})
+r = requests.get('https://www.reddit.com/r/news/hot.json?limit=1', headers = {'User-agent': 'john magic mirror'})
 response_data = json.loads(r.text)
 
 
