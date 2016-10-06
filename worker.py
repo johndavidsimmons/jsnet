@@ -37,7 +37,7 @@ sunset = weather_data['query']['results']['channel']['astronomy']['sunset']
 url = 'https://sheetsu.com/apis/v1.0/901b3b02/id/1'
 
 # Data to be posted 
-data = {'id':1,'headlines': headlines, 'temp':temp, 'high':high, 'low':low, 'weather_code':code, 'sunrise':sunrise, 'sunset':sunset, 'time': str(datetime.datetime.now())}
+data = {'id':1,'headlines': headline, 'temp':temp, 'high':high, 'low':low, 'weather_code':code, 'sunrise':sunrise, 'sunset':sunset, 'time': str(datetime.datetime.now())}
 
 
 p = requests.put(url, data)
