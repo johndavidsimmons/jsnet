@@ -5,3 +5,5 @@ scratch.txt
 .env
 venv/
 sql/
+scratch.py
+worker.py

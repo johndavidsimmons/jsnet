@@ -5,7 +5,11 @@
 		{% if page != 1 %}
 			<h2 class="post-title"><a href="{{post[1]|replace(' ','-')}}">{{ post[1] }}</a></h2>
 		{% else %}
-			<h2 class="post-title"><a href="blog/{{post[1]|replace(' ','-')}}">{{ post[1] }}</a></h2>
+			{% if posttitle %}
+				<h2 class="post-title"><a href="#">{{ post[1] }}</a></h2>
+			{% else %}
+				<h2 class="post-title"><a href="blog/{{post[1]|replace(' ','-')}}">{{ post[1] }}</a></h2>
+			{% endif %}
 		{% endif %}
 
 		<!-- github link and timestamp  -->
