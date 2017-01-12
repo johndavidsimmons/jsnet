@@ -1,22 +1,33 @@
 import datetime
+import os
+import cloudinary as Cloud
+
+Cloud.config.update = ({
+    'cloud_name':os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    'api_key': os.environ.get('CLOUDINARY_API_KEY'),
+    'api_secret': os.environ.get('CLOUDINARY_API_SECRET')
+})
+
+width = {"width":600}
+
+pibox = Cloud.CloudinaryImage("finalbox_g5av0y.png")
+pibox.url_options.update(width)
+
+magicmirror = Cloud.CloudinaryImage("magicmirror.jpg")
+magicmirror.url_options.update(width)
+
+pipeshelf = Cloud.CloudinaryImage("pipeshelf.jpg")
+pipeshelf.url_options.update(width)
+
+
 
 def Content():
     CONTENT_DICT = {
-
-        'name': 'John Simmons',
         'year': datetime.datetime.now().strftime('%Y'),
-        'Navigation': [
-            ['Blog', '/blog', 'Blog'],
-            ['Resume', "/resume", 'Resume'],
-            ['Records', '/records', 'Records'],
-            ['Maker Challenge', "/makerchallenge", "Maker Challenge"]
-        ],
-        'Home': {
-            'bio': 'My name is John Simmons and I am an information technology professional living in the Detroitish area. I love <a href="/records">vinyl</a>, <a class="sammy">dachshunds</a>, and skateboarding. My  interests are Python for web development and data analysis, user experience analytics, and anything that uses a Raspberry Pi. I also write about Qualtrics on Medium from time to time. I believe that you can\'t build a castle in a day, but you can place one perfect brick at a time.'
-        },
         'Resume': [
-            ['Quicken Loans', 'http://www.quickenloans.com', 'May 2013 - Present', 'UX Analyst',
-             'Studying the relationship between user behavior and business analytics of Quicken Loans client facing web products.'],
+            ['Quicken Loans', 'http://www.quickenloans.com', 'August 2016 - Present', 'Data Analytics Developer', "Part data analyst, part web developer; I am responsible for coding Quicken Loans' web analytics tools (Omniture, DTM, Qualtrics)." ],
+            ['Quicken Loans', 'http://www.quickenloans.com', 'May 2013 - August 2016', 'UX Analyst',
+             'Studying the relationship between user behavior and business analytics of Quicken Loans\' client facing web products.'],
             ['University of Michigan Library',
              'http://www.lib.umich.edu/library-information-technology/design-discovery', 'January 2013 - May 2013',
              'UX Intern',
@@ -34,46 +45,37 @@ def Content():
              "May 2010",
              'The Imaging program at WMU focused on the business and technical aspects commercial printing.']
         ],
-        'Images': {
-            'portrait': '/static/img/john.png',
-            'sammy': '/static/img/sam.png'
-        },
-        'Social': {
-            "linkedin": {
-                'link': 'https://www.linkedin.com/in/johndavidsimmons',
-                'fa': 'fa fa-linkedin-square fa-2x'
-            },
-            'github': {
-                'link': 'https://github.com/johndavidsimmons',
-                'fa': 'fa fa-github-square fa-2x',
-                'fa1x': 'fa fa-github-square'
-            }
-        },
-        'Maker': {
-            'ideas': {
+        'todo': {
+            '2017': {
                 'done': [
-                    'Personal website with resume, projects, bio, etc (You are here!)',
-                    '<a href="/blog/Pi-Music-Box">Pi powered Spotify music box</a>',
-                    'Twitter Budgeting App (Hackathon Project)',
-                    '<a href="https://medium.com/@johndavidsimmons/email-sign-up-widget-in-qualtrics-407c384e5ad3#.79rw5rtu8">A Medium post</a>',
-                    '<a href="/blog/Magic-Mirror">Pi Powered Magic Mirror</a>',
-                    'A stair ramp for Sammy',
-                    'Pi powered FM Radio broadcaster',
-                    '<a href="/records">Record collection section</a>',
-                    '<a href="/cl">Craigslist Scraper</a>'
-                ],
-                'in-progress': [
-                    'Patterned stairwell'
+                    ('Pipe Shelf', pipeshelf.url)
                 ],
                 'upcoming': [
-                    '<a href="https://amzn.com/w/22OXWTGT6FKCV">Model airplane, car, or helicopter</a>',
+                    'Raspberry Pi Photo Booth',
+                    "Self Portrait"
+                ]
+            },
+            '2016': {
+                'done': [
+                    'Personal website with resume, projects, bio, etc (You are here!)',
+                    ('Pi powered Spotify music box', pibox.url),
+                    'Twitter Budgeting App (Hackathon Project)',
+                    ('A Medium post', 'https://medium.com/@johndavidsimmons/email-sign-up-widget-in-qualtrics-407c384e5ad3#.79rw5rtu8'),
+                    ('Pi Powered Magic Mirror', magicmirror.url),
+                    'A stair ramp for Sammy',
+                    'Pi powered FM Radio broadcaster',
+                    ('Record collection website', "http://www.recordbin.online"),
+                    'Craigslist Scraper'
+                ],
+                'upcoming': [
+                    'Patterned stairwell',
+                    ('Model airplane, car, or helicopter','https://amzn.com/w/22OXWTGT6FKCV'),
                     'A magnetic wall mounted bottle opener',
                     'Socket wrench organizing peg board',
                     'A self portrait'
                     
                 ]
-            },
-            'desc': 'Project ideas for the <a href="http://megamaker.co/challenge/">2016 Maker Challenge</a>'
-        }
+            }
+            }
     }
     return CONTENT_DICT
