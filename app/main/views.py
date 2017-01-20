@@ -1,7 +1,6 @@
 from flask import render_template
 from . import main
 from content import Content
-import cloudinary as CD
 
 CONTENT_DICT = Content()
 

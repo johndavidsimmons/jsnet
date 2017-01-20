@@ -52,7 +52,9 @@ def Content():
                 ],
                 'upcoming': [
                     'Raspberry Pi Photo Booth',
-                    "Self Portrait"
+                    "Self Portrait",
+                    "Learn to juggle",
+                    "BJJ Belt Stripe"
                 ]
             },
             '2016': {

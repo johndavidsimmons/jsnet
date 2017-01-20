@@ -51,10 +51,5 @@ def test(coverage=False):
 		print 'HTML version: file://{}/index.html'.format(covdir)
 		COV.erase()
 
-@manager.command
-def deploy():
-	'''Run Deployment tasks'''
-	pass
-
 if __name__ == '__main__':
 	manager.run()
