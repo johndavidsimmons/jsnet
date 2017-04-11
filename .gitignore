@@ -2,5 +2,6 @@
 *.DS_Store
 *.idea
 .env
+scratch.py
 venv/
 tmp/
