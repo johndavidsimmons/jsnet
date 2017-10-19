@@ -25,9 +25,9 @@ def Content():
     CONTENT_DICT = {
         'year': datetime.datetime.now().strftime('%Y'),
         'Resume': [
-            ['Quicken Loans', 'http://www.quickenloans.com', 'August 2016 - Present', 'Data Analytics Developer', "Part data analyst, part web developer; I am responsible for coding Quicken Loans' web analytics tools (Omniture, DTM, Qualtrics)." ],
+            ['Quicken Loans', 'http://www.quickenloans.com', 'August 2016 - Present', 'Data Analytics Developer', "Part data analyst, part web developer; I am responsible for coding Quicken Loans' web analytics tools (Omniture, Google Analytics, DTM, Qualtrics)." ],
             ['Quicken Loans', 'http://www.quickenloans.com', 'May 2013 - August 2016', 'UX Analyst',
-             'Studying the relationship between user behavior and business analytics of Quicken Loans\' client facing web products.'],
+             'I provided insights on the relationship between user behavior and business analytics of Quicken Loans\' client facing web products.'],
             ['University of Michigan Library',
              'http://www.lib.umich.edu/library-information-technology/design-discovery', 'January 2013 - May 2013',
              'UX Intern',
@@ -48,14 +48,18 @@ def Content():
         'todo': {
             '2017': {
                 'done': [
-                    ('Pipe Shelf', pipeshelf.url)
+                    ('Pipe Shelf', pipeshelf.url),
+                    "BJJ Belt Stripes",
+                    "Raspberry Pi Security Camera",
+                    "Raspberry Pi Google Assistant"
+
                 ],
                 'upcoming': [
                     'Raspberry Pi Photo Booth',
                     "Self Portrait",
                     "Learn to juggle",
-                    "BJJ Belt Stripe", 
-                    "Earn some Bitcoin"
+                    "Earn some Bitcoin",
+                    "Smoke a turkey"
                 ]
             },
             '2016': {
