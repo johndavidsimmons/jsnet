@@ -46,9 +46,6 @@
 				<li role="presentation">
 					<a {% if request.path == '/resume'%}class="selected"{% endif %} href="{{ url_for('main.resume')}}">Resume</a>
 				</li>
-				<li role="presentation">
-					<a {% if request.path == '/todo'%}class="selected"{% endif %}href="{{ url_for('main.todo')}}">To-Do</a>
-				</li>
 	      </ul>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->

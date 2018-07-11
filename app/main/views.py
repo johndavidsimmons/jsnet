@@ -15,11 +15,6 @@ def resume():
 	return render_template('resume.html', CONTENT_DICT=CONTENT_DICT)
 
 
-@main.route('/todo', methods=['GET'])
-def todo():
-	return render_template('todo.html', CONTENT_DICT=CONTENT_DICT)
-
-
 @main.route('/download', methods=['GET'])
 def download():
 	return send_file('static/John_Simmons_Resume.pdf', as_attachment=True)
