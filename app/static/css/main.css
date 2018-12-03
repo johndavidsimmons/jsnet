@@ -10,8 +10,9 @@
 	margin: 0 auto;
 }
 
-
-
+p {
+	cursor: pointer;
+}
 /****************************
 		Navigation
 ****************************/
@@ -151,4 +152,14 @@ li.next:before,
 		border-bottom: none;
 		background-color: lightgray;
 	}
+}
+
+@media print {
+  #work a[href]:after {
+    content: none !important;
+  }
+
+  * {
+  	font-size: 11px;
+  }
 }

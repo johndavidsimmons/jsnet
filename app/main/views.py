@@ -1,13 +1,13 @@
-from flask import render_template, send_file
+from flask import redirect, render_template, send_file, url_for
 from . import main
 from content import Content
 
 CONTENT_DICT = Content()
 
-
-@main.route('/', methods=['GET'])
-def index():
-	return render_template('index.html', CONTENT_DICT=CONTENT_DICT)
+@main.route('/', defaults={'path': ''}, methods=['GET'])
+@main.route('/<path:path>', methods=['GET'])
+def index(path):
+	return redirect(url_for('.resume'))
 
 
 @main.route('/resume', methods=['GET'])

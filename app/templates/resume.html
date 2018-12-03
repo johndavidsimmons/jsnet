@@ -7,12 +7,29 @@
 	<div class="col-sm-12">
 		<h1 class="text-center res-name">John Simmons</h1>
 		<h2 class="text-center res-con">johndavidsimmons@gmail.com</h2>
+		<h2 class="text-center res-con"><a href="https://measure.slack.com" target="_blank">#Measure Slack:</a> @johnsimmons</h2>
 		<h2 class="text-center res-con push-lg"><a href="{{ url_for('main.download') }}">Download PDF</a></h2>
-		<p class='text-center res-head push-sm'><em>&mdash;Work&mdash;</em></p>
 	</div>
 </div>
 
+<!-- Blog and Projects -->
 <div class="row">
+	<div class="col-sm-6 col-sm-offset-3">
+		<p class='text-center res-head push-sm'><em>&mdash;Blog & Projects&mdash;</em></p>
+	</div>
+	<div class="col-sm-6 col-sm-offset-3">
+		<strong><a href="https://medium.com/@johndavidsimmons" target="_blank">Medium Blog</a></strong><p>I write about Adobe Analytics, Qualtrics, Python, and tinkering with Raspberry Pis</p>
+		<strong><a href="https://github.com/johndavidsimmons/Ext-QSI" target="_blank">QSI Launch Extension</a></strong><p>An Adobe Launch extension for loading Qualtrics Site Intercept Zone codes.</p>
+		<strong><a href="https://github.com/MisterPhilip/omnibug/graphs/contributors" target="_blank">Omnibug Mparticle Integration</a></strong><p>An addition to the Omnibug analytics debugger browser extension for inspecting mParticle network requests.</p>
+	</div>
+</div>
+
+
+<!-- Work -->
+<div class="row" id="work">
+	<div class="col-sm-6 col-sm-offset-3">
+		<p class='text-center res-head push-sm'><em>&mdash;Work&mdash;</em></p>
+	</div>
 	<div class="col-sm-6 col-sm-offset-3">
 		{% for list in CONTENT_DICT['Resume'] %}
 			<strong><a href="{{ list[1] }}">{{ list[0] }}</a></strong> &mdash; <em>{{ list[3] }}</em>
@@ -22,12 +39,11 @@
 	</div>
 </div>
 
+<!-- School -->
 <div class="row">
 	<div class="col-sm-12">
 		<p class='text-center res-head push-sm'><em>&mdash;School&mdash;</em></p>
 	</div>
-</div>
-<div class="row">
 	<div class="col-sm-6 col-sm-offset-3">
 		{% for list in CONTENT_DICT['Education'] %}
 			<strong><a href="{{ list[1] }}">{{ list[0] }}</a></strong> &mdash; <em>{{ list[2] }}</em>
@@ -36,4 +52,29 @@
 		{% endfor %}
 	</div>
 </div>
+
+<script>
+	$(document).ready(function(){
+
+		var recolor = function(el) {
+			console.log("timeout function")
+			el.css({"color": "", "font-size": "1em"})		
+		}
+
+		$("p").lettering();
+		$("p span").css("cursor", "pointer")
+		var randRGB = function() { return Math.floor(Math.random() * 254) + 1 }
+
+		$("p span").on("mouseover", function() {
+			var randColor = "rgb(" + randRGB() + "," + randRGB() + "," + randRGB() + ")" 
+			$(this).css("color", randColor);
+			$(this).css("font-size", "1.25em")
+
+			var el = $(this)
+			setTimeout(function() {recolor(el)}, 2500)
+		});
+		
+	})
+</script>
+
 {% endblock %}

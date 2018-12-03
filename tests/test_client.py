@@ -3,6 +3,7 @@ from flask import current_app, url_for
 from app import create_app
 import os
 from content import Content
+from datetime import datetime
 
 CONTENT_DICT = Content()
 
@@ -40,11 +41,15 @@ class FlaskClientTestCase(unittest.TestCase):
 	def tearDown(self):
 		self.app_context.pop()
 
-	def test_home_page(self):
+	def test_home_page_redirect(self):
 		response = self.client.get(url_for("main.index"))
+		self.assertTrue(response.status_code == 302)
+
+	def test_home_page_redirect_to_resume(self):
+		response = self.client.get(url_for("main.index"), follow_redirects=True)
 		self.assertTrue(response.status_code == 200)
-		self.assertTrue("All projects and other writings have been migrated" in response.data)
-		self.assertTrue('<a class="selected" href="/">Home</a>' in response.data)
+		self.assertTrue("Quicken Loans" in response.data)
+		self.assertTrue('<a class="selected" href="/resume">Resume</a>' in response.data)
 
 	def test_resume_page(self):
 		response = self.client.get(url_for("main.resume"))
@@ -52,32 +57,25 @@ class FlaskClientTestCase(unittest.TestCase):
 		self.assertTrue("Quicken Loans" in response.data)
 		self.assertTrue('<a class="selected" href="/resume">Resume</a>' in response.data)
 
-	def test_todo_page(self):
-		response = self.client.get(url_for("main.todo"))
+	def test_any_page_redirects_to_resume(self):
+		response = self.client.get("/abc1234", follow_redirects=True)
 		self.assertTrue(response.status_code == 200)
-		self.assertTrue("To-Do List" in response.data)
-		self.assertTrue('<a class="selected"href="/todo">To-Do</a>' in response.data)
+		self.assertTrue("Quicken Loans" in response.data)
+		self.assertTrue('<a class="selected" href="/resume">Resume</a>' in response.data)
 
-	def test_404_page(self):
-		response = self.client.get('/yolo')
-		self.assertTrue(response.status_code == 404)
-		self.assertTrue("Not Found" in response.data)
+	def test_405_redirects(self):
+		response = self.client.post(url_for("main.resume"))
+		self.assertTrue(response.status_code == 302)
 
-	def test_405_page(self):
-		response = self.client.post('/')
-		self.assertTrue(response.status_code == 405)
-		self.assertTrue("Method Not Allowed" in response.data)
+	def test_405_redirects(self):
+		response = self.client.post(url_for("main.resume"), follow_redirects=True)
+		self.assertTrue(response.status_code == 200)
+		self.assertTrue("Quicken Loans" in response.data)
+		self.assertTrue('<a class="selected" href="/resume">Resume</a>' in response.data)	
 
-		response = self.client.post('/resume')
-		self.assertTrue(response.status_code == 405)
-		self.assertTrue("Method Not Allowed" in response.data)
-
-		response = self.client.post('/todo')
-		self.assertTrue(response.status_code == 405)
-		self.assertTrue("Method Not Allowed" in response.data)
 
 	def test_year(self):
-		self.assertTrue(CONTENT_DICT['year'] == '2017')	
+		self.assertTrue(CONTENT_DICT['year'] == datetime.now().strftime('%Y'))	
 						
 
 if __name__ == "__main__":
