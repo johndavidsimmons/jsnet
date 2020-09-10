@@ -43,12 +43,12 @@ def test(coverage=True):
 	if COV:
 		COV.stop()
 		COV.save()
-		print "Coverage Summary"
+		# print "Coverage Summary"
 		COV.report()
 		basedir = os.path.abspath(os.path.dirname(__file__))
 		covdir = os.path.join(basedir, 'tmp/coverage')
 		COV.html_report(directory=covdir)
-		print 'HTML version: file://{}/index.html'.format(covdir)
+		# print 'HTML version: file://{}/index.html'.format(covdir)
 		COV.erase()
 
 if __name__ == '__main__':

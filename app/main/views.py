@@ -7,7 +7,7 @@ CONTENT_DICT = Content()
 @main.route('/', defaults={'path': ''}, methods=['GET'])
 @main.route('/<path:path>', methods=['GET'])
 def index(path):
-	return redirect(url_for('.resume'))
+	return render_template('resume.html', CONTENT_DICT=CONTENT_DICT)
 
 
 @main.route('/resume', methods=['GET'])
